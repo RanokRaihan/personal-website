@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,700;1,500&display=swap');
+/* Initializing */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'roboto', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Bebas Neue', cursive;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* global style */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+img {
+    width: 100%;
+}
+
+.btn {
+    color: #fff;
+    padding: 15px 32px;
+    border-radius: 5px;
+    font-size: 20px;
+    display: inline-block
+}
+
+.btn-primary {
+    background-image: linear-gradient(to bottom, #f85852, #fa7a75);
+    margin: 20px 0;
+}
+
+h1 {
+    font-size: 55px;
+    color: #363958;
+    text-transform: uppercase;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.text-highlight {
+    color: #ff8367;
+}
+
+/* navigation */
+
+.main-nav {
+    width: 100%;
+    margin: 30px 0;
+    height: 40px;
+}
+
+.nav-items {
+    float: right;
+}
+
+.nav-items a {
+    color: #3c3c3c;
+    font-size: 22px;
+}
+
+.nav-items li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 0;
+}
+
+/* intro section styling */
+
+.float-box {
+    width: 45%;
+    float: left;
+}
+
+.intro-text {
+    margin-right: 80px;
+    margin-top: 100px;
+}
+
+.intro-text p {
+    margin: 20px 0;
+    color: #3e3e3e;
+}
+
+/* about section */
+
+.about-image {
+    margin-right: 80px;
+}
+
+.about-text {
+    margin-top: 50px;
+}
+
+.about-text p {
+    margin: 35px 0;
+}
+
+/* project section */
+
+.projects {
+    clear: both;
+    margin-bottom: 30px;
+    background: #f8f9fc;
+    height: 750px;
+}
+
+.projects h1 {
+    text-align: center;
+    margin: 90px 0;
+}
+
+.project-wrapper {
+    width: 100%;
+}
+
+.single-project {
+    width: 30%;
+    margin-right: 30px;
+    float: left;
+    background: #fff;
+    box-shadow: 0 0 15px #dcdcdc;
+    padding: 20px 10px;
+    border-radius: 12px;
+}
+
+.single-project h3 {
+    padding: 20px 5px;
+    font-weight: 700;
+    font-family: 'roboto';
+}
+
+/* client review */
+
+.client-review {
+    margin-top: 80px;
+    text-align: center;
+    height: 600px;
+}
+
+.client-review h1 {
+    margin: 50px 0;
+}
+
+.single-client {
+    width: 30%;
+    float: left;
+    margin-right: 20px;
+}
+
+.single-client img {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 50%;
+}
+
+.single-client h2 {
+    font-weight: 500;
+    margin: 25px 0;
+}
+
+.single-client p {
+    color: #3e3e3e;
+    line-height: 1.5;
+}
+
+.fa-star {
+    color: coral;
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+/* work inquiry */
+
+.work-inquiry {
+    clear: both;
+    margin-top: 80px;
+}
+
+.work-inquiry div {
+    width: 700px;
+    height: 174px;
+    background-image: url("images/group-bg.png");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    position: relative;
+}
+
+.work-inquiry h1 {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    color: #fff;
+}
+
+.work-inquiry a {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    margin: 0;
+}
+
+/* social media */
+
+.stay-conected {
+    margin: 80px 0;
+}
+
+.stay-conected p {
+    text-align: center;
+    color: #696871;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 20px 0;
+}
+
+.stay-conected h2 {
+    text-align: center;
+    font-weight: 500;
+    font-family: 'roboto';
+    margin: 20px 0;
+}
+
+.social-links {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.social-links img {
+    width: 22%;
+    margin-right: 18px
+}
