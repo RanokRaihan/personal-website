@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio Website
 
-## Getting Started
+Welcome to my personal portfolio website! This is where I showcase my skills, projects, and experiences as a developer.
 
-First, run the development server:
+## About Me
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I am a passionate and dedicated developer with expertise in web development. I have experience working with various technologies such as HTML, CSS, JavaScript, and frameworks like React,NextJS and Node.js. I am constantly learning and exploring new technologies to enhance my skills.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Projects
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Here are some of the projects I have worked on:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Project 1: [Project Name](link-to-project)
 
-## Learn More
+   - Description: Brief description of the project and its features.
+   - Technologies used: List of technologies used in the project.
 
-To learn more about Next.js, take a look at the following resources:
+2. Project 2: [Project Name](link-to-project)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Description: Brief description of the project and its features.
+   - Technologies used: List of technologies used in the project.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Project 3: [Project Name](link-to-project)
+   - Description: Brief description of the project and its features.
+   - Technologies used: List of technologies used in the project.
 
-## Deploy on Vercel
+## Skills
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- HTML
+- CSS
+- JavaScript
+- React
+- Next.js
+- Tailwindcss
+- Node.js
+- express.js
+- Mongodb
+- Mongoose
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact Me
+
+Feel free to reach out to me via email at [email protected] or connect with me on LinkedIn.
