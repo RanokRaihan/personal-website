@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Ranok Raihan",
     images: [
       {
-        url: "assets/images/og-image.png",
+        url: "/assets/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Ranok Raihan - Full Stack Developer",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       "Web developer, skilled in the MERN stack and dedicated to building accessible, robust, user-centric applications.",
     images: [
       {
-        url: "assets/images/og-image.png", // Path relative to the public folder
+        url: "/assets/images/og-image.png", // Path relative to the public folder
         width: 1200,
         height: 630,
         alt: "Ranok Raihan - Full Stack Developer",
