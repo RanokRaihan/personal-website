@@ -1,5 +1,7 @@
 import { introStrings } from "@/constants";
+import { cn } from "@/lib/utils";
 import { DownloadIcon } from "@radix-ui/react-icons";
+import { Lora } from "next/font/google";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
@@ -9,6 +11,7 @@ interface Props {
   // Define your component's props here
 }
 
+const lora = Lora({ subsets: ["latin"] });
 const HeroSection: React.FC<Props> = (props) => {
   // Implement your component logic here
 
@@ -17,7 +20,10 @@ const HeroSection: React.FC<Props> = (props) => {
       <div className="container mx-auto min-h-screen  flex flex-col md:flex-row items-center md:justify-between  justify-center gap-6 p-6 md:p-12">
         <div className="md:w-1/2  text-center md:text-left md:space-y-5 space-y-4">
           <div>
-            <p className="text-2xl mb-2"> Hi there! I am </p>
+            <p className={cn(lora.className, "text-2xl mb-2")}>
+              {" "}
+              Hi there! I am{" "}
+            </p>
             <h1 className="text-5xl font-bold dark:text-emerald-400 text-emerald-600">
               Ranok Raihan
             </h1>
