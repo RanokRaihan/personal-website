@@ -6,7 +6,7 @@ import { ModeToggle } from "./ThemeToggleButton";
 
 const Navbar: React.FC = () => {
   return (
-    <header className=" p-4 fixed top-0 left-0 w-full z-10 backdrop-blur-md dark:bg-slate-900/5 bg-white/5">
+    <header className=" p-4  fixed top-0 left-0 w-full z-10 backdrop-blur-md dark:bg-slate-900/5 bg-white/5">
       <div className="flex items-center justify-between container mx-auto">
         <Link href="/">
           <Image
