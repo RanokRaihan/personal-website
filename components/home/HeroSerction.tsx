@@ -16,7 +16,7 @@ const HeroSection: React.FC<Props> = (props) => {
   // Implement your component logic here
 
   return (
-    <section className="w-full bg-gradient-to-t dark:from-emerald-950 dark:to-slate-800 from-emerald-100 pt-16">
+    <section className="w-full bg-gradient-to-t dark:from-emerald-950 dark:to-slate-800 from-emerald-100 pt-16 md:pt-0">
       <div className="container mx-auto min-h-screen  flex flex-col md:flex-row items-center md:justify-between  justify-center gap-6 p-6 md:p-12">
         <div className="md:w-1/2  text-center md:text-left md:space-y-5 space-y-4">
           <div>
