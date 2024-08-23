@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Ranok Raihan",
     images: [
       {
-        url: "assets/images/og-image.jpg",
+        url: "assets/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Ranok Raihan - Full Stack Developer",
