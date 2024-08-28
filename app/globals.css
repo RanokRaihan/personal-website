@@ -87,3 +87,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .home-heading {
+    @apply text-4xl font-bold border-b-2 pb-2 border-green-600 text-green-600 dark:border-green-400 dark:text-green-400;
+  }
+}

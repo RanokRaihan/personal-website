@@ -51,7 +51,7 @@ export default function RootLayout({
         <head />
         <body
           className={cn(
-            "dark:text-white dark:bg-slate-950 remove-scrollbar",
+            "dark:text-slate-100 dark:bg-slate-900 bg-slate-100/50 remove-scrollbar",
             inter.className
           )}
         >
