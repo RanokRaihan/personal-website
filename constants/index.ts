@@ -70,3 +70,42 @@ export const skills = [
     icon: "/assets/icons/skills/npm.svg",
   },
 ];
+
+export const projects = [
+  {
+    title: "Project 1",
+    description: "This is a project description",
+    image: "/assets/images/project1.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    frontendGithub: "https://github.com",
+    backendGithub: "https://github.com",
+    liveLink: "https://demo.com",
+  },
+  {
+    title: "Project 2",
+    description: "This is a project description",
+    image: "/assets/images/project2.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    frontendGithub: "https://github.com",
+    backendGithub: "https://github.com",
+    liveLink: "https://demo.com",
+  },
+  {
+    title: "Project 3",
+    description: "This is a project description",
+    image: "/assets/images/project3.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    frontendGithub: "https://github.com",
+    backendGithub: "https://github.com",
+    liveLink: "https://demo.com",
+  },
+  {
+    title: "Project 4",
+    description: "This is a project description",
+    image: "/assets/images/project4.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    frontendGithub: "https://github.com",
+    backendGithub: "https://github.com",
+    liveLink: "https://demo.com",
+  },
+];

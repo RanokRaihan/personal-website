@@ -16,7 +16,7 @@ const HeroSection: React.FC<Props> = (props) => {
   // Implement your component logic here
 
   return (
-    <section className="w-full bg-gradient-to-t dark:from-slate-950/25 dark:to-slate-900 from-emerald-100/50 pt-16 md:pt-0">
+    <section className="w-full bg-gradient-to-t dark:from-slate-950/25 border-b dark:border-slate-800  dark:to-slate-900 from-emerald-100/50 pt-16 md:pt-0">
       <div className="container mx-auto min-h-screen  flex flex-col md:flex-row items-center md:justify-between  justify-center gap-6 p-6 md:p-12">
         <div className="md:w-1/2  text-center md:text-left md:space-y-5 space-y-4">
           <div>
@@ -37,7 +37,7 @@ const HeroSection: React.FC<Props> = (props) => {
           <div className="flex items-center justify-center md:justify-start">
             <Button
               size="lg"
-              className="flex gap-2 bg-emerald-600 dark:bg-emerald-400"
+              className="flex gap-2 bg-emerald-600 dark:bg-emerald-400 rounded-full "
             >
               Download Resume
               <DownloadIcon className="size-6" />

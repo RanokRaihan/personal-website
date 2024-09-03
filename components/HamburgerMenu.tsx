@@ -17,7 +17,7 @@ export default function HamburgerMenu() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="dark:bg-transparent border dark:border-white md:hidden "
+          className="dark:bg-transparent border dark:border-slate-500 md:hidden "
         >
           <HamburgerMenuIcon className="h-6 w-6" />
         </Button>
@@ -28,27 +28,27 @@ export default function HamburgerMenu() {
         <ThemeToggleSubmenu />
 
         <DropdownMenuItem>
-          <Link href="#" className="text-blue-500">
+          <Link href="/" className="nav-link-mobile">
             Home
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="#" className="text-blue-500">
+          <Link href="/projects" className="nav-link-mobile">
             Projects
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="#" className="text-blue-500">
+          <Link href="/blogs" className="nav-link-mobile">
             blogs
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="#" className="text-blue-500">
+          <Link href="/about" className="nav-link-mobile">
             About
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="#" className="text-blue-500">
+          <Link href="/contact" className="nav-link-mobile">
             contact
           </Link>
         </DropdownMenuItem>

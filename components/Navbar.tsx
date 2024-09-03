@@ -10,30 +10,38 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-between container mx-auto">
         <Link href="/">
           <Image
-            src="/assets/images/main-logo.svg"
+            src="/assets/images/logo-main.svg"
             width={300}
             height={100}
             alt="Logo"
-            className="cursor-pointer md:block hidden"
+            className="cursor-pointer w-[150px] md:w-[200px]"
           />
-          <Image
+          {/* <Image
             src="/assets/images/logo-small.png"
-            width={300}
+              width={300}
             height={100}
             alt="Logo"
             className="cursor-pointer md:hidden block w-14"
-          />
+          /> */}
         </Link>
 
-        <nav className="md:flex hidden items-center justify-center flex-grow text-lg gap-4">
+        <nav className="md:flex gap-6 hidden items-center justify-center flex-grow text-lg ">
           {/* Navbar items */}
-          <Link href="#" className="text-blue-500">
+          <Link href="/" className="nav-link">
             Home
           </Link>
-          <Link href="#">Projects</Link>
-          <Link href="#">Blogs</Link>
-          <Link href="#">About</Link>
-          <Link href="#">Contact</Link>
+          <Link href="/projects" className="nav-link">
+            Projects
+          </Link>
+          <Link href="/blogs" className="nav-link">
+            Blogs
+          </Link>
+          <Link href="/about" className="nav-link">
+            About
+          </Link>
+          <Link href="/contact" className="nav-link">
+            Contact
+          </Link>
         </nav>
 
         <ModeToggle />

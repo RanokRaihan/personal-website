@@ -87,9 +87,28 @@
     @apply bg-background text-foreground;
   }
 }
-
+@layer utilities {
+  .shad-input {
+    @apply border-none bg-white dark:bg-slate-950/25 text-lg py-2  pl-12 !important;
+  }
+  .shad-label {
+    @apply text-lg;
+  }
+  .shad-textarea {
+    @apply border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 text-lg !important;
+  }
+  .shad-error {
+    @apply text-red-500 dark:text-red-500 !important;
+  }
+}
 @layer components {
   .home-heading {
     @apply text-4xl font-bold border-b-2 pb-2 border-green-600 text-green-600 dark:border-green-400 dark:text-green-400;
+  }
+  .nav-link {
+    @apply text-lg font-semibold text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-150;
+  }
+  .nav-link-mobile {
+    @apply font-semibold text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-150;
   }
 }

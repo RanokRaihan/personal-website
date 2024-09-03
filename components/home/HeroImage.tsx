@@ -11,6 +11,12 @@ const HeroImage = () => {
   useEffect(() => {
     if (theme === "dark") {
       setImageSrc("/assets/images/hero-dark.svg");
+    } else if (theme === "system") {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setImageSrc("/assets/images/hero-dark.svg");
+      } else {
+        setImageSrc("/assets/images/hero.svg");
+      }
     } else {
       setImageSrc("/assets/images/hero.svg");
     }
