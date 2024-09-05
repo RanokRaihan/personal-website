@@ -89,7 +89,7 @@
 }
 @layer utilities {
   .shad-input {
-    @apply border-none bg-white dark:bg-slate-950/25 text-lg py-2  pl-12 !important;
+    @apply border-none bg-white dark:bg-slate-950/25 text-lg py-6  pl-12 !important;
   }
   .shad-label {
     @apply text-lg;
