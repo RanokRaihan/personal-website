@@ -1,8 +1,5 @@
 "use client";
 
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme } from "next-themes";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,15 +7,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
 
-export function ModeToggle() {
+export function ModeToggle({ border }: { border?: boolean }) {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="outline"
+          variant={border ? "outline" : "icon"}
           size="icon"
           className="dark:bg-transparent border dark:border-slate-600 hidden md:flex"
         >

@@ -1,7 +1,14 @@
 import LoginForm from "@/components/forms/LoginForm";
+import { getLoggedInUser } from "@/lib/actions/admin.actions";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const user = await getLoggedInUser();
+  console.log({ user });
+  if (user) {
+    redirect("/admin");
+  }
   return (
     <main className="bg-emerald-100/25 dark:bg-slate-900">
       <section className="container mx-auto flex flex-col items-center justify-center min-h-screen  ">

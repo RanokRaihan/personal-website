@@ -37,7 +37,8 @@ const HeroSection: React.FC<Props> = (props) => {
           <div className="flex items-center justify-center md:justify-start">
             <Button
               size="lg"
-              className="flex gap-2 bg-emerald-600 dark:bg-emerald-400 rounded-full "
+              variant="green"
+              className="flex gap-2 rounded-full"
             >
               Download Resume
               <DownloadIcon className="size-6" />

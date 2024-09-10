@@ -1,10 +1,11 @@
+import { getLoggedInUser } from "@/lib/actions/admin.actions";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import HamburgerMenu from "./HamburgerMenu";
+import Logout from "./Logout";
 import { ModeToggle } from "./ThemeToggleButton";
-
-const Navbar: React.FC = () => {
+const Navbar = async () => {
+  const user = await getLoggedInUser();
   return (
     <header className=" p-4  fixed top-0 left-0 w-full z-10 backdrop-blur-md dark:bg-slate-900/5 bg-white/5">
       <div className="flex items-center justify-between container mx-auto">
@@ -16,13 +17,6 @@ const Navbar: React.FC = () => {
             alt="Logo"
             className="cursor-pointer w-[150px] md:w-[200px]"
           />
-          {/* <Image
-            src="/assets/images/logo-small.png"
-              width={300}
-            height={100}
-            alt="Logo"
-            className="cursor-pointer md:hidden block w-14"
-          /> */}
         </Link>
 
         <nav className="md:flex gap-6 hidden items-center justify-center flex-grow text-lg ">
@@ -42,9 +36,12 @@ const Navbar: React.FC = () => {
           <Link href="/contact" className="nav-link">
             Contact
           </Link>
+          <Link href="/admin" className="nav-link">
+            Admin
+          </Link>
         </nav>
-
-        <ModeToggle />
+        {user && <Logout />}
+        <ModeToggle border={true} />
         <HamburgerMenu />
       </div>
     </header>
