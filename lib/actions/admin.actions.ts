@@ -23,9 +23,13 @@ export async function adminLogin({
       secure: true,
     });
     return;
-  } catch (error) {
+  } catch (error: any) {
     console.log({ error });
-    throw error;
+    if (error?.code === 401) {
+      return { error: "Invalid email or password" };
+    } else {
+      return { error: "An error occurred" };
+    }
   }
 }
 

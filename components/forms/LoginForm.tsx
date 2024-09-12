@@ -34,15 +34,15 @@ export default function LoginForm() {
     const { email, password } = values;
     try {
       setIsLoading(true);
-      const session = await adminLogin({ email, password });
+      const result = await adminLogin({ email, password });
+      if (result?.error) {
+        setServerError(result.error);
+        return;
+      }
       toast.success("Logged in successfully");
       router.push("/admin");
     } catch (error) {
-      if (error instanceof Error) {
-        setServerError(error.message);
-      } else {
-        setServerError("An unknown error occurred");
-      }
+      setServerError("An error occurred");
     } finally {
       setIsLoading(false);
     }
