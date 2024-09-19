@@ -8,6 +8,19 @@ export const introStrings = [
   "TypeScript Developer",
 ];
 
+export const projectCategories = [
+  "E-commerce",
+  "Social Media",
+  "Blog",
+  "Portfolio",
+  "Education",
+  "Healthcare",
+  "Travel",
+  "Finance",
+  "Real Estate",
+  "Other",
+];
+export const Status = ["draft", "published"] as const;
 export const skills = [
   {
     skill: "HTML",
@@ -109,3 +122,18 @@ export const projects = [
     liveLink: "https://demo.com",
   },
 ];
+
+export const projectDefaultValues = {
+  title: "",
+  description: "",
+  thumbnail: [],
+  tags: "",
+  technologies: "",
+  publishedAt: new Date(Date.now()),
+  liveLink: "",
+  clientCode: "",
+  serverCode: "",
+  videoLink: "",
+  category: "",
+  status: "draft" as Status,
+};

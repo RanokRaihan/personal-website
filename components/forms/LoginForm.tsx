@@ -8,7 +8,6 @@ import { Form } from "@/components/ui/form";
 import { adminLogin } from "@/lib/actions/admin.actions";
 
 import { loginFormSchema } from "@/lib/validation";
-import { LockIcon, MailIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -56,16 +55,13 @@ export default function LoginForm() {
       >
         <CustomFormField
           control={form.control}
-          fieldType={FormFieldType.INPUT}
-          icon={<MailIcon />}
+          fieldType={FormFieldType.EMAIL}
           name="email"
           placeholder="Email"
         />
         <CustomFormField
           control={form.control}
-          fieldType={FormFieldType.INPUT}
-          icon={<LockIcon />}
-          inputType="password"
+          fieldType={FormFieldType.PASSWORD}
           name="password"
           placeholder="Password"
         />

@@ -1,8 +1,9 @@
 import { getLoggedInUser } from "@/lib/actions/admin.actions";
 import { GearIcon } from "@radix-ui/react-icons";
-import { BellIcon, MailIcon, SearchIcon, User2Icon } from "lucide-react";
+import { BellIcon, MailIcon, SearchIcon } from "lucide-react";
 import { ModeToggle } from "../ThemeToggleButton";
 import { Separator } from "../ui/separator";
+import AdminDropdownMenu from "./AdminDropdownMenu";
 
 const TopMenu = async () => {
   const user = await getLoggedInUser();
@@ -26,9 +27,7 @@ const TopMenu = async () => {
           <span className="text-emerald-500 text-lg">{user?.name}</span>
           <span className="text-sm">{user?.labels[0]}</span>
         </div>
-        <div className="border p-2 rounded-full bg-slate-100 dark:bg-slate-800">
-          <User2Icon className="size-8 " />
-        </div>
+        <AdminDropdownMenu />
       </div>
     </div>
   );
