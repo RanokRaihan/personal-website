@@ -18,6 +18,6 @@ export interface IProject {
   isFeatured: boolean;
   keyFeatures: string[];
   status: "completed" | "in-progress" | "planned";
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

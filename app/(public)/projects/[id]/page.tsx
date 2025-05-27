@@ -16,31 +16,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
-// Mock function to fetch project data - replace with your actual data fetching
-async function getProjectById(id: string) {
-  // In a real implementation, fetch from your API
-  return {
-    _id: "682c54f1dcfeade697baa012",
-    title: "project title",
-    summary: "this is summary",
-    description: "this is description",
-    challenges: ["challange 1", "challange 2"],
-    technologies: ["react", "express"],
-    frontendRepo: "https://github.com/username/project-frontend",
-    backendRepo: "https://github.com/username/project-backend",
-    frontendLive: "https://project-demo.com",
-    backendLive: "https://api.project-demo.com",
-    thumbnail:
-      "https://res.cloudinary.com/ranokraihan/image/upload/v1747735792/portfolio-image/thumbnail-1747735788641-685309912.jpg",
-    images: [],
-    isFeatured: true,
-    keyFeatures: ["key feature 1", "key features 2"],
-    status: "completed",
-    createdAt: "2025-05-20T10:09:53.303Z",
-    updatedAt: "2025-05-20T10:09:53.303Z",
-  };
-}
-
 export default async function ProjectDetails({
   params,
 }: {
@@ -48,6 +23,7 @@ export default async function ProjectDetails({
 }) {
   const result = await getProjectByIdAction(params.id);
   const project: IProject = result.data || {};
+  console.log("Project Details:", project);
 
   return (
     <main className="container mx-auto py-16 px-4 md:px-6">

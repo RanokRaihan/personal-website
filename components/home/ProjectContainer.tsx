@@ -9,7 +9,12 @@ const ProjectContainer = async () => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {projects?.length > 0 ? (
         projects
-          ?.slice(0, 3)
+          .slice() // create a shallow copy to avoid mutating original
+          .sort(
+            (a: IProject, b: IProject) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          )
+          .slice(0, 3)
           .map((project: IProject) => (
             <ProjectCard project={project} key={project._id} />
           ))
