@@ -1,7 +1,9 @@
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
+import CardSkeletonContainer from "../skeletons/CardSkeletonContainer";
 import { Button } from "../ui/button";
-import BlogCard from "./BlogCard";
+import BlogContainer from "./BlogContainer";
 
 const BlogSection = () => {
   return (
@@ -15,11 +17,11 @@ const BlogSection = () => {
           thoughts on various topics. Whether you&apos;re looking for tech tips
           or personal reflections, there&apos;s something for everyone.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-        </div>
+
+        <Suspense fallback={<CardSkeletonContainer count={3} />}>
+          <BlogContainer />
+        </Suspense>
+
         <Button asChild size="lg" className="rounded-full" variant="green">
           <Link href="/blogs">
             Read All Blogs <ArrowRightIcon className="w-4 h-4 ml-2" />

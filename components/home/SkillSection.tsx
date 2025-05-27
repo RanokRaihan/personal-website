@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Suspense } from "react";
 import SkillContainer from "./SkillContainer";
 
 const SkillSection = () => {
@@ -13,7 +14,13 @@ const SkillSection = () => {
           more. Here are some of the technologies and tools I work with:
         </p>
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between">
-          <SkillContainer />
+          <Suspense
+            fallback={
+              <div className="w-full h-64 bg-gray-200 animate-pulse rounded-lg" />
+            }
+          >
+            <SkillContainer />
+          </Suspense>
           <div className="lg:w-1/2 w-full flex justify-center items-center mt-4 lg:mt-0">
             <Image
               src="/assets/images/skill-graphic.svg"

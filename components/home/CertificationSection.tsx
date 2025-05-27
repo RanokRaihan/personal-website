@@ -17,9 +17,9 @@ interface CertificationProps {
 const certifications: CertificationProps[] = [
   {
     id: "cert-1",
-    title: "Full Stack Web Development",
+    title: "Complete Web Development Course ",
     institute: "Programming Hero",
-    year: "2022",
+    year: "2021",
     duration: "6 months",
     description:
       "Comprehensive training in MERN stack development, covering React, Node.js, Express, and MongoDB along with modern web development practices.",
@@ -28,25 +28,38 @@ const certifications: CertificationProps[] = [
   },
   {
     id: "cert-2",
-    title: "JavaScript & TypeScript Mastery",
-    institute: "Udemy",
-    year: "2021",
+    title: "Think in a Redux way",
+    institute: "Learn with Sumit",
+    year: "2022",
     duration: "3 months",
     description:
-      "Advanced course on JavaScript and TypeScript fundamentals, covering modern ES6+ features, type systems, and practical application development.",
-    image: "/assets/images/certificates/javascript-typescript.png",
-    verificationLink: "https://verification.example.com/cert-67890",
+      "In-depth course on state management using Redux, focusing on building scalable applications with predictable state management patterns.",
+    image: "/assets/images/certificates/LWS-redux-Certificate.jpg",
+    verificationLink:
+      "https://learnwithsumit.com/certificates/verify/LWSCTXN-IW68ZOA2",
   },
   {
     id: "cert-3",
-    title: "React & Next.js Development",
-    institute: "Coursera",
-    year: "2023",
-    duration: "4 months",
+    title: "Reactive Accelerator",
+    institute: "Learn with Sumit",
+    year: "2024",
+    duration: "6 months",
     description:
-      "Specialized training on building modern, responsive web applications using React and Next.js with a focus on performance optimization.",
-    image: "/assets/images/certificates/react-nextjs.png",
-    verificationLink: "https://verification.example.com/cert-24680",
+      "Advanced course on React and Next.js, covering server-side rendering, static site generation, and building high-performance web applications.",
+    image: "/assets/images/certificates/LWS-react-Certificate.jpg",
+    verificationLink:
+      "https://learnwithsumit.com/certificates/verify/LWSCTXN-7WSJUM64",
+  },
+  {
+    id: "cert-4",
+    title: "Next Level Web Development",
+    institute: "Programming Hero",
+    year: "2025",
+    duration: "6 months",
+    description:
+      "Comprehensive training on Next.js, SQL, PostgreSQL, Prisma, MongoDB, and Mongoose. Covered advanced web development concepts, full-stack integration, and best practices for scalable applications.",
+    image: "/assets/images/certificates/next-level.png",
+    verificationLink: "https://verification.example.com/cert-67890",
   },
 ];
 

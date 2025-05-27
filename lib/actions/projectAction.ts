@@ -57,3 +57,28 @@ export const getFeaturedProjectsAction = async () => {
     throw error;
   }
 };
+
+export const getProjectByIdAction = async (id: string) => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/project/${id}`;
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      const error = await res.json();
+      console.error("Error fetching project:", error);
+      throw new Error(error.message);
+    }
+
+    const data = await res.json();
+    if (data.error || data.success === false) {
+      console.error("Error fetching project:", data.error);
+      throw new Error(data?.error || "Unknown error");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching project:", error);
+    throw error;
+  }
+};

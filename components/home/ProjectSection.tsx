@@ -1,7 +1,9 @@
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { Suspense } from "react";
+import CardSkeletonContainer from "../skeletons/CardSkeletonContainer";
 import { Button } from "../ui/button";
-import ProjectCard from "./ProjectCard";
+import ProjectContainer from "./ProjectContainer";
 
 const ProjectSection = () => {
   return (
@@ -15,11 +17,11 @@ const ProjectSection = () => {
           creativity. Each project reflects my dedication to building
           user-friendly and efficient applications.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-        </div>
+
+        <Suspense fallback={<CardSkeletonContainer count={3} />}>
+          <ProjectContainer />
+        </Suspense>
+
         <Button asChild size="lg" className="rounded-full" variant="green">
           <Link href="/projects">
             View All Projects <ArrowRightIcon className="w-4 h-4 ml-2" />

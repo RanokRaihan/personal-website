@@ -34,7 +34,7 @@ export default function ProfileForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 w-full text-left lg:w-1/2 lg:px-8 px-2 max-w-[600px]"
+        className="space-y-6 w-full text-left  lg:px-8 px-2 max-w-[600px]"
       >
         <CustomFormField
           control={form.control}
