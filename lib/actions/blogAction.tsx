@@ -15,7 +15,12 @@ export const getAllBlogAction = async (filters?: Filter[]) => {
       url = `${url}?${searchParams.toString()}`;
     }
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      cache: "no-store",
+      next: {
+        revalidate: 0,
+      },
+    });
 
     if (!res.ok) {
       const error = await res.json();

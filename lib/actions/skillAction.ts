@@ -4,7 +4,12 @@ export async function getAllSkillsAction() {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/skill`;
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      cache: "no-store",
+      next: {
+        revalidate: 0,
+      },
+    });
     console.log(res);
 
     const data = await res.json();
