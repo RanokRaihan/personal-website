@@ -39,9 +39,11 @@ const HeroSection: React.FC<Props> = (props) => {
               size="lg"
               variant="green"
               className="flex gap-2 rounded-full"
+              asChild
             >
-              Download Resume
-              <DownloadIcon className="size-6" />
+              <a href="https://drive.usercontent.google.com/download?id=1lEx5YGciXzGNWiaD_YvzWYxMVZ1QyGDU&export=download&authuser=0&confirm=t&uuid=e8998cd1-6860-4031-88cb-286c389cf6ae&at=ALoNOgm1fFI0q-yOvy-5Q8nKzj0O:1748285210785">
+                Download Resume <DownloadIcon className="size-6" />
+              </a>
             </Button>
           </div>
         </div>

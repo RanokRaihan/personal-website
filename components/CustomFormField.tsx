@@ -14,6 +14,14 @@ import {
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
+import {
+  CalendarIcon,
+  EyeIcon,
+  EyeOffIcon,
+  LockIcon,
+  MailIcon,
+} from "lucide-react";
+import { useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 
@@ -40,13 +48,14 @@ export enum FormFieldType {
   DATE_PICKER = "datePicker",
   SELECT = "select",
   SKELETON = "skeleton",
+  EMAIL = "email",
+  PASSWORD = "password",
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   const {
     control,
     fieldType,
-    inputType,
     name,
     label,
     icon,
@@ -55,6 +64,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     dateFormat,
     renderSkeleton,
   } = props;
+  const [showPassword, setShowPassword] = useState(false);
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
@@ -67,11 +77,52 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
           <FormControl>
             <Input
               placeholder={placeholder}
-              type={inputType}
+              type="text"
               {...field}
               className="shad-input"
             />
           </FormControl>
+        </div>
+      );
+    case FormFieldType.EMAIL:
+      return (
+        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
+          <div className="absolute l-0 t-0 flex items-center justify-center w-12 h-full rounded-l-md">
+            <MailIcon />
+          </div>
+
+          <FormControl>
+            <Input
+              placeholder={placeholder}
+              type="email"
+              {...field}
+              className="shad-input"
+            />
+          </FormControl>
+        </div>
+      );
+    case FormFieldType.PASSWORD:
+      return (
+        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
+          <div className="absolute  flex items-center justify-center w-12 h-full rounded-l-md">
+            <LockIcon />
+          </div>
+
+          <FormControl>
+            <Input
+              placeholder={placeholder}
+              type={showPassword ? "text" : "password"}
+              {...field}
+              className="shad-input pr-12"
+            />
+          </FormControl>
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-0 t-0 z-50 flex items-center justify-center w-12 h-full rounded-l-md"
+          >
+            {showPassword ? <EyeOffIcon className="w-20" /> : <EyeIcon />}
+          </button>
         </div>
       );
     case FormFieldType.TEXTAREA:
@@ -101,9 +152,9 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.DATE_PICKER:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          <div className="flex items-center justify-center w-12 bg-dark-500 rounded-l-md">
-            {icon}
+        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
+          <div className="absolute l-0 t-0 flex items-center justify-center w-12 h-full rounded-l-md z-50">
+            <CalendarIcon />
           </div>
           <FormControl>
             <DatePicker
@@ -112,7 +163,8 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               onChange={(date) => field.onChange(date)}
               timeInputLabel="Time:"
               dateFormat={dateFormat ?? "MM/dd/yyyy"}
-              wrapperClassName="date-picker"
+              className="w-full pl-12 p-2 bg-transparent !important"
+              wrapperClassName="w-full"
             />
           </FormControl>
         </div>
@@ -123,11 +175,11 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
         <FormControl>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger className="shad-select-trigger">
+              <SelectTrigger className="rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 py-5">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent className="shad-select-content">
+            <SelectContent className="rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950 py-4">
               {props.children}
             </SelectContent>
           </Select>

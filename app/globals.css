@@ -89,7 +89,7 @@
 }
 @layer utilities {
   .shad-input {
-    @apply border-none bg-white dark:bg-slate-950/25 text-lg py-6  pl-12 !important;
+    @apply border-none bg-white dark:bg-slate-950/25 text-base py-6  pl-12 !important;
   }
   .shad-label {
     @apply text-lg;
@@ -106,7 +106,7 @@
     @apply text-4xl font-bold border-b-2 pb-2 border-green-600 text-green-600 dark:border-green-400 dark:text-green-400;
   }
   .nav-link {
-    @apply text-lg font-semibold text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-150;
+    @apply text-lg  text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-150;
   }
   .nav-link-mobile {
     @apply font-semibold text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-150;
