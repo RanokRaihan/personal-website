@@ -73,11 +73,12 @@ const CertificationCard = ({
       <div className="flex flex-col md:flex-row">
         {/* Certificate Image (Left) */}
         <div className="md:w-1/3 p-4 flex items-center justify-center bg-slate-100 dark:bg-slate-700/50">
-          <div className="relative w-full h-48 md:h-64">
+          <div className="relative w-full h-48 md:h-64 flex items-center justify-center">
             <Image
               src={certification.image}
               alt={certification.title}
-              fill
+              width={300}
+              height={200}
               className="object-contain p-2"
             />
           </div>
