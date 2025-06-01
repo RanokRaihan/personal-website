@@ -61,7 +61,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
 
         {/* Image */}
-        <div className="overflow-hidden h-48">
+        <div className="overflow-hidden h-60">
           <Image
             src={thumbnail || "/assets/images/og-image.png"}
             width={500}
