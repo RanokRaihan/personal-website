@@ -10,11 +10,18 @@ import { ModeToggle } from "./ThemeToggleButton";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min((scrollY / documentHeight) * 100, 100);
+
+      setIsScrolled(scrollY > 20);
+      setScrollProgress(progress);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -132,13 +139,7 @@ const Navbar = () => {
       <div
         className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300"
         style={{
-          width: `${Math.min(
-            ((window?.scrollY || 0) /
-              (document?.documentElement?.scrollHeight - window?.innerHeight ||
-                1)) *
-              100,
-            100
-          )}%`,
+          width: `${scrollProgress}%`,
         }}
         aria-hidden="true"
       />
