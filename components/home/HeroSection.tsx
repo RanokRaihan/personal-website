@@ -151,10 +151,10 @@ const HeroSection: React.FC<Props> = (props) => {
               className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-full px-8 py-3 font-semibold tracking-wide group"
               asChild
             >
-              <a href="https://drive.usercontent.google.com/download?id=1lEx5YGciXzGNWiaD_YvzWYxMVZ1QyGDU&export=download&authuser=0&confirm=t&uuid=e8998cd1-6860-4031-88cb-286c389cf6ae&at=ALoNOgm1fFI0q-yOvy-5Q8nKzj0O:1748285210785">
+              <Link href="https://drive.usercontent.google.com/download?id=1lEx5YGciXzGNWiaD_YvzWYxMVZ1QyGDU&export=download&authuser=0&confirm=t&uuid=e8998cd1-6860-4031-88cb-286c389cf6ae&at=ALoNOgm1fFI0q-yOvy-5Q8nKzj0O:1748285210785">
                 <DownloadIcon className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-200" />
                 Download Resume
-              </a>
+              </Link>
             </Button>
 
             {/* Social Links */}
@@ -165,14 +165,14 @@ const HeroSection: React.FC<Props> = (props) => {
                 className="border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-300 rounded-full p-3 group"
                 asChild
               >
-                <a
+                <Link
                   href="https://github.com/RanokRaihan"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
                 >
                   <GitHubLogoIcon className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-                </a>
+                </Link>
               </Button>
 
               <Button
