@@ -7,9 +7,10 @@ import Link from "next/link";
 
 interface ProjectCardProps {
   project: IProject;
+  index?: number;
 }
 
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
   const {
     _id,
     title,
@@ -31,7 +32,13 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     : new Date().toLocaleDateString();
 
   return (
-    <div className="bg-white dark:bg-slate-800/80 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 h-full flex flex-col">
+    <div
+      className="animate-fade-in bg-white dark:bg-slate-800/80 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 h-full flex flex-col"
+      style={{
+        animationDelay: `${index * 300}ms`,
+        animationFillMode: "both",
+      }}
+    >
       {/* Image Container with Featured Badge */}
       <div className="relative">
         {/* Featured Badge */}
