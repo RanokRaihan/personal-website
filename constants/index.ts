@@ -2,11 +2,11 @@ import { BookOpen, FolderOpen, Home, Mail, User } from "lucide-react";
 
 export const introStrings = [
   "Crafting Modern Web Experiences",
-  "Building Scalable MERN Solutions",
-  "React Enthusiast & UI Innovator",
+  "Building Scalable Full-Stack Solutions",
+  "React Enthusiast and UI Innovator",
   "Next.js for Lightning-Fast Apps",
   "Node.js Backend Specialist",
-  "MongoDB Data Architect",
+  "PostgreSQL and MongoDB Expert",
   "TypeScript for Robust Code",
 ];
 export const menuItems = [
