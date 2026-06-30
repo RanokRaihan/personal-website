@@ -1,17 +1,16 @@
 "use client";
-import { Code, Sparkles } from "lucide-react";
 import { ReactTyped } from "react-typed";
 
 const TypeAnimation = ({ strings = ["Here goes strings"] }) => {
   return (
-    <div className="flex items-center gap-3 text-2xl md:text-3xl font-semibold">
-      <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
-        <div className="relative">
-          <Code className="h-6 w-6 md:h-7 md:w-7" />
-          <Sparkles className="h-3 w-3 absolute -top-1 -right-1 text-emerald-500 dark:text-emerald-400 animate-pulse" />
-        </div>
-      </div>
-      <div className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-gray-100 dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
+    <div className="flex items-center gap-3 font-mono text-lg md:text-xl">
+      <span
+        className="select-none text-emerald-600 dark:text-emerald-400"
+        aria-hidden="true"
+      >
+        ›
+      </span>
+      <span className="text-slate-700 dark:text-slate-200">
         <ReactTyped
           strings={strings}
           typeSpeed={45}
@@ -20,9 +19,9 @@ const TypeAnimation = ({ strings = ["Here goes strings"] }) => {
           loop
           showCursor={true}
           cursorChar="_"
-          className="font-semibold tracking-tight"
+          className="tracking-tight"
         />
-      </div>
+      </span>
     </div>
   );
 };

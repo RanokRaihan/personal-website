@@ -30,7 +30,7 @@ export default function HamburgerMenu() {
         <Button
           variant="outline"
           size="icon"
-          className="relative md:hidden border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+          className="relative md:hidden border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -57,7 +57,7 @@ export default function HamburgerMenu() {
         sideOffset={8}
       >
         {/* Header */}
-        <div className="px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+        <div className="px-4 py-3 bg-emerald-50 dark:bg-emerald-900/20">
           <DropdownMenuLabel className="text-base font-semibold text-slate-900 dark:text-slate-100">
             Navigation
           </DropdownMenuLabel>
@@ -87,16 +87,16 @@ export default function HamburgerMenu() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center px-3 py-3 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 group"
+                  className="flex items-center px-3 py-3 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 group"
                   onClick={handleMenuClick}
                   role="menuitem"
                   tabIndex={0}
                 >
-                  <div className="flex items-center justify-center w-8 h-8 rounded-md bg-slate-100 dark:bg-slate-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors duration-200 mr-3">
-                    <IconComponent className="h-4 w-4 text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200" />
+                  <div className="flex items-center justify-center w-8 h-8 rounded-md bg-slate-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 transition-colors duration-200 mr-3">
+                    <IconComponent className="h-4 w-4 text-slate-600 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200" />
                   </div>
                   <span className="flex-1">{item.label}</span>
-                  <div className="w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                  <div className="w-1 h-1 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 </Link>
               </DropdownMenuItem>
             );

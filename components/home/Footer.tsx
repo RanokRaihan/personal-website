@@ -1,125 +1,87 @@
 import Link from "next/link";
 import React from "react";
-import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+
+const socials = [
+  {
+    href: "https://github.com/RanokRaihan",
+    label: "GitHub",
+    Icon: FaGithub,
+  },
+  {
+    href: "https://www.linkedin.com/in/ranok-raihan/",
+    label: "LinkedIn",
+    Icon: FaLinkedin,
+  },
+  {
+    href: "mailto:ranokraihan@gmail.com",
+    label: "Email",
+    Icon: FaEnvelope,
+  },
+];
+
+const quickLinks = [
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+];
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* About Section */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Ranok Raihan</h3>
-            <p className="text-gray-300 mb-4">
+    <footer className="border-t border-slate-200 bg-slate-50 text-slate-600 dark:border-white/10 dark:bg-[#0B0F14] dark:text-slate-400">
+      <div className="section-container py-14">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          {/* About */}
+          <div className="max-w-sm">
+            <h3 className="font-display text-lg font-bold text-slate-900 dark:text-slate-50">
+              Ranok Raihan<span className="text-emerald-500">.</span>
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed">
               Building beautiful, performant, and accessible web experiences.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/ranokraihan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaGithub size={20} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ranok-raihan/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaLinkedin size={20} />
-              </a>
-              <a
-                href="https://twitter.com/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaTwitter size={20} />
-              </a>
-              <a
-                href="mailto:ranokraihan@gmail.com"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaEnvelope size={20} />
-              </a>
+            <div className="mt-5 flex gap-3">
+              {socials.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    href.startsWith("http") ? "noopener noreferrer" : undefined
+                  }
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-emerald-500 hover:text-emerald-600 dark:border-white/10 dark:text-slate-400 dark:hover:border-emerald-400 dark:hover:text-emerald-400"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/projects"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Projects
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
+            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">
+              Quick links
+            </h3>
+            <ul className="mt-4 space-y-2">
+              {quickLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
-            <p className="text-gray-300 mb-4">
-              Subscribe to my newsletter for the latest updates
-            </p>
-            <form className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="bg-gray-800 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-medium transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400">
+        <div className="mt-12 border-t border-slate-200 pt-6 dark:border-white/10">
+          <p className="text-sm">
             © {new Date().getFullYear()} Ranok Raihan. All rights reserved.
           </p>
-          <div className="mt-4 md:mt-0">
-            <Link
-              href="/privacy"
-              className="text-gray-400 hover:text-white mr-4 transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

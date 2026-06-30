@@ -17,8 +17,11 @@ There are no tests in this project.
 
 Requires a `.env.local` file with:
 ```
-NEXT_PUBLIC_API_URL=<backend API base URL>
+BACKEND_URL=<backend API base URL>          # used by lib/config.ts (server-only)
+NEXT_PUBLIC_API_URL=<backend API base URL>  # used by legacy server actions (client-visible)
 ```
+
+The two variables currently point to the same backend. The existing server actions in `lib/actions/` still read `NEXT_PUBLIC_API_URL` directly; migration to the new `lib/api/` client (which reads `BACKEND_URL` via `lib/config.ts`) is in progress.
 
 All data (projects, skills, blogs) is fetched from this external REST API — there is no local database or CMS.
 
@@ -28,7 +31,9 @@ This is a **Next.js 14 App Router** personal portfolio site (Ranok Raihan — Fu
 
 ### Data Flow
 
-Server Actions in `lib/actions/` (`projectAction.ts`, `skillAction.ts`, `blogAction.tsx`) fetch data from `NEXT_PUBLIC_API_URL`. All fetches use `cache: "no-store"` (no caching). The home page renders data server-side via async container components — `ProjectContainer`, `SkillContainer`, `BlogContainer` — which fetch and pass data down to card components.
+Server Actions in `lib/actions/` (`projectAction.ts`, `skillAction.ts`, `blogAction.tsx`) fetch data from `NEXT_PUBLIC_API_URL` using raw `fetch` with `cache: "no-store"`. The home page renders data server-side via async container components — `ProjectContainer`, `SkillContainer`, `BlogContainer` — which fetch and pass data down to card components.
+
+A new typed HTTP client layer lives in `lib/api/` (see below). The existing actions have not yet been migrated to use it.
 
 ### Component Pattern
 
@@ -61,6 +66,36 @@ Contact form uses `react-hook-form` + `zod` (schema in `lib/validation.ts`) + `C
 | `/blogs/[id]` | Blog detail |
 | `/about` | About page |
 | `/contact` | Contact page |
+
+### API Client (`lib/api/`)
+
+A typed HTTP client built on top of the native `fetch` API. Import from the barrel: `import { apiClient, ApiError } from "@/lib/api"`.
+
+**`apiClient`** exposes `.get`, `.post`, `.put`, `.patch`, `.delete` — all generic over the response type `T`. Every method accepts an optional `RequestConfig`:
+
+| Option | Default | Purpose |
+|---|---|---|
+| `params` | — | Query string key/value pairs |
+| `timeout` | 30 000 ms | Aborts slow requests |
+| `retries` | 0 | Retries on 5xx / 429 / network errors |
+| `revalidate` / `tags` | — | Next.js ISR cache control |
+| `skipAuth` | `false` | Skip attaching the Bearer token |
+| `cache` | — | Native `fetch` cache mode |
+
+All URLs are constructed by `buildUrl` in `lib/api/utils.ts`, which prepends `api/v1` to every endpoint and resolves against `BACKEND_URL`.
+
+**Auth** — `client.ts` imports `getAuthToken` from `./tokens`, which does not exist yet and must be created before the client can be used for authenticated routes.
+
+**Error handling** — non-ok responses throw either a backend-shaped `BackendError` (passed through as-is) or an `ApiError` (with `.statusCode`). Use `ApiError.isApiError(e)` and `ApiError.isUnauthorized(e)` to distinguish them.
+
+**`actionHandler`** (`lib/api/actionHandler.ts`) — a thin `"use server"` wrapper for Server Actions. Catches thrown errors and normalizes them to `BackendError` so callers never need to handle raw exceptions:
+
+```ts
+const result = await actionHandler(() => apiClient.get<ApiResponse<IProject[]>>("/project"));
+if (!result.success) { /* result is BackendError */ }
+```
+
+**`lib/config.ts`** — exports a validated `env` object (`env.backendUrl`, `env.nodeEnv`, `env.isProduction`). Throws at startup if `BACKEND_URL` is missing. Use this instead of reading `process.env` directly.
 
 ### Key Decisions
 
