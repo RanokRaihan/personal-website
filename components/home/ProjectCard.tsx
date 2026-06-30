@@ -1,7 +1,11 @@
 import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { IProject } from "@/types/projectType";
-import { ArrowRightIcon, StarFilledIcon } from "@radix-ui/react-icons";
-import { Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -31,96 +35,121 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
       })
     : new Date().toLocaleDateString();
 
+  // Status colors
+  const statusColors = {
+    completed:
+      "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+    "in-progress":
+      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
+    planned: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+  };
+
+  // Gradient colors for cards
+  const gradients = [
+    "from-blue-500/10 to-purple-500/10",
+    "from-purple-500/10 to-pink-500/10",
+    "from-pink-500/10 to-red-500/10",
+    "from-green-500/10 to-blue-500/10",
+    "from-yellow-500/10 to-orange-500/10",
+    "from-indigo-500/10 to-purple-500/10",
+  ];
+
+  const cardGradient = gradients[index % gradients.length];
+
   return (
-    <div
-      className="animate-fade-in bg-white dark:bg-slate-800/80 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 h-full flex flex-col"
-      style={{
-        animationDelay: `${index * 300}ms`,
-        animationFillMode: "both",
-      }}
-    >
-      {/* Image Container with Featured Badge */}
-      <div className="relative">
-        {/* Featured Badge */}
-        {isFeatured && (
-          <div className="absolute top-3 left-3 z-10">
-            <Badge className="bg-amber-500 dark:bg-amber-200 hover:bg-amber-600 text-amber-950 dark:text-amber-900 flex items-center gap-1 px-2">
-              <StarFilledIcon className="h-3 w-3" />
-              Featured
-            </Badge>
-          </div>
-        )}
-
-        {/* Status Badge */}
-        <div className="absolute top-3 right-3 z-10">
-          <Badge
-            variant="outline"
-            className={`border ${
-              status === "completed"
-                ? "border-emerald-500 dark:border-emerald-600 bg-emerald-100 text-emerald-700 dark:bg-emerald-100 dark:text-emerald-700"
-                : status === "in-progress"
-                ? "border-blue-500 dark:border-blue-600 bg-blue-100 text-blue-700 dark:bg-blue-100 dark:text-blue-700"
-                : "border-purple-500 dark:border-purple-600 bg-purple-100 text-purple-700 dark:bg-purple-100 dark:text-purple-700"
-            } capitalize`}
-          >
-            {status}
-          </Badge>
-        </div>
-
-        {/* Image */}
-        <div className="overflow-hidden h-60">
+    <Link href={`/projects/${_id}`} className="group">
+      <Card
+        className={`h-full overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-2 border-0 bg-gradient-to-br ${cardGradient} backdrop-blur-sm`}
+      >
+        {/* Image container */}
+        <div className="relative h-48 overflow-hidden">
           <Image
-            src={thumbnail || "/assets/images/og-image.png"}
-            width={500}
-            height={300}
+            src={thumbnail || "/assets/images/placeholder-project.jpg"}
             alt={title}
-            className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
           />
-        </div>
-      </div>
 
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-grow">
-        {/* Title */}
-        <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-gray-100">
-          {title}
-        </h3>
-
-        {/* Summary */}
-        <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
-          {summary}
-        </p>
-
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {technologies.map((tech, index) => (
+          {/* Overlay with status badge */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute top-4 right-4">
             <Badge
-              key={index}
               variant="secondary"
-              className="capitalize text-xs bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 text-indigo-700 dark:text-indigo-400"
+              className={`${statusColors[status]} border-0 font-medium capitalize`}
             >
-              {tech}
+              {status.replace("-", " ")}
             </Badge>
-          ))}
-        </div>
-
-        {/* Footer with Date and Link */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
-          <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm">
-            <Calendar className="h-3.5 w-3.5 mr-1" />
-            {formattedDate}
           </div>
 
-          <Link
-            href={`/projects/${_id}`}
-            className="text-sm font-medium text-emerald-600 dark:text-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-400 flex items-center gap-1 duration-200 group"
-          >
-            View Details
-            <ArrowRightIcon className="size-3.5 transform transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
+          {/* Featured badge */}
+          {isFeatured && (
+            <div className="absolute top-4 left-4">
+              <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white border-0 font-medium">
+                ⭐ Featured
+              </Badge>
+            </div>
+          )}
         </div>
-      </div>
-    </div>
+
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2">
+              {title}
+            </h3>
+          </div>
+
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+            {formattedDate}
+          </p>
+        </CardHeader>
+
+        <CardContent className="pb-4">
+          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3 mb-4">
+            {summary}
+          </p>
+
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-2">
+            {technologies?.slice(0, 3).map((tech, techIndex) => (
+              <Badge
+                key={techIndex}
+                variant="outline"
+                className="text-xs bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+              >
+                {tech}
+              </Badge>
+            ))}
+            {technologies && technologies.length > 3 && (
+              <Badge
+                variant="outline"
+                className="text-xs bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400"
+              >
+                +{technologies.length - 3}
+              </Badge>
+            )}
+          </div>
+        </CardContent>
+
+        <CardFooter className="pt-0">
+          <div className="flex items-center text-sm text-blue-600 dark:text-blue-400 font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+            View Project
+            <svg
+              className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 };
 

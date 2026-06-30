@@ -14,13 +14,13 @@ const TypeAnimation = ({ strings = ["Here goes strings"] }) => {
       <div className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-gray-100 dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
         <ReactTyped
           strings={strings}
-          typeSpeed={50}
-          backSpeed={30}
-          backDelay={2000}
+          typeSpeed={45}
+          backSpeed={10}
+          backDelay={2500}
           loop
           showCursor={true}
-          cursorChar="|"
-          className="font-bold tracking-tight"
+          cursorChar="_"
+          className="font-semibold tracking-tight"
         />
       </div>
     </div>
