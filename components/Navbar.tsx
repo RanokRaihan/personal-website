@@ -10,18 +10,11 @@ import { ModeToggle } from "./ThemeToggleButton";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const documentHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.min((scrollY / documentHeight) * 100, 100);
-
-      setIsScrolled(scrollY > 20);
-      setScrollProgress(progress);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -48,7 +41,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 rounded-lg transition-transform hover:scale-105"
+          className="focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:focus-visible:ring-emerald-400 rounded-lg transition-transform hover:scale-105"
           aria-label="Ranok Raihan - Home"
         >
           <Image
@@ -78,7 +71,7 @@ const Navbar = () => {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 ${
+                    className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:focus-visible:ring-emerald-400 ${
                       isActive
                         ? "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20"
                         : "text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
@@ -107,7 +100,7 @@ const Navbar = () => {
           {/* CTA Button - Desktop only */}
           <Link
             href="/contact"
-            className="hidden lg:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+            className="hidden lg:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
             aria-label="Get in touch - Contact me"
           >
             <svg
@@ -135,14 +128,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Progress Bar */}
-      <div
-        className="absolute bottom-0 left-0 h-0.5 bg-emerald-500 transition-all duration-300"
-        style={{
-          width: `${scrollProgress}%`,
-        }}
-        aria-hidden="true"
-      />
     </header>
   );
 };

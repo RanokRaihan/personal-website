@@ -27,7 +27,7 @@ const EducationSection: React.FC = () => {
       <div className="section-container">
         {/* Heading */}
         <div className="mb-14">
-          <span className="section-eyebrow">// background</span>
+          <span className="section-eyebrow">{"// background"}</span>
           <h2 className="section-heading mt-3">Education &amp; Certifications</h2>
           <div className="section-rule" />
         </div>

@@ -127,7 +127,7 @@
     @apply py-24 md:py-32;
   }
   .section-container {
-    @apply mx-auto w-full max-w-6xl px-6;
+    @apply container mx-auto px-4;
   }
   .section-eyebrow {
     @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400;

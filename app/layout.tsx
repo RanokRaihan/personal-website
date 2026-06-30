@@ -3,8 +3,6 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -66,7 +64,7 @@ export default function RootLayout({
             inter.variable,
             spaceGrotesk.variable,
             jetBrainsMono.variable,
-            "font-sans"
+            "font-sans",
           )}
         >
           <ThemeProvider
@@ -77,7 +75,6 @@ export default function RootLayout({
           >
             {children}
             <NextTopLoader showSpinner={false} />
-            <ToastContainer position="top-right" autoClose={2000} />
           </ThemeProvider>
         </body>
       </html>
