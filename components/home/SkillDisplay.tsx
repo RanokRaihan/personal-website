@@ -30,13 +30,6 @@ const SkillDisplay = ({ skills }: SkillDisplayProps) => {
   const filtered =
     activeTab === "ALL" ? skills : skills.filter((s) => s.category === activeTab);
 
-  const featured = skills.filter((s) => s.featured);
-  const nonFeatured = skills.filter((s) => !s.featured);
-  const graphicSkills =
-    activeTab === "ALL"
-      ? [...featured, ...nonFeatured].slice(0, 7)
-      : filtered.slice(0, 7);
-
   return (
     <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
       {/* Left: tabs + grid */}
@@ -75,9 +68,9 @@ const SkillDisplay = ({ skills }: SkillDisplayProps) => {
         </div>
       </div>
 
-      {/* Right: animated constellation — desktop only */}
+      {/* Right: radar chart — desktop only, stays mounted so chart updates in place */}
       <div className="hidden lg:flex lg:w-[42%] items-center justify-center sticky top-24">
-        <SkillGraphic key={activeTab} skills={graphicSkills} activeTab={activeTab} />
+        <SkillGraphic skills={skills} activeTab={activeTab} />
       </div>
     </div>
   );
