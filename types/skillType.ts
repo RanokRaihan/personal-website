@@ -1,12 +1,13 @@
 export interface ISkill {
   _id: string;
   name: string;
-  description: string;
-  category: string;
-  image: string;
-  proficiencyLevel: "beginner" | "intermediate" | "advanced" | "expert";
-  yearsOfExperience: number;
+  slug: string;
+  category: "FRONTEND" | "BACKEND" | "DATABASE" | "DEVOPS" | "LANGUAGE" | "TOOL" | "OTHER";
+  level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "EXPERT";
+  iconUrl: string;
+  iconName: string;
   featured: boolean;
-  createdAt: Date | string;
-  updatedAt: Date | string;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
 }
