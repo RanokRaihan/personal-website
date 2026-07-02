@@ -33,7 +33,7 @@ const SkillSection = () => {
   return (
     <section className="section-shell relative overflow-hidden">
       {/* Single emerald ambient glow — mirrors HeroSection */}
-      <div className="pointer-events-none absolute -top-32 right-0 h-[480px] w-[480px] rounded-full bg-emerald-400/10 dark:bg-emerald-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 -translate-y-1/2 -left-32 h-[480px] w-[480px] rounded-full bg-emerald-400/10 dark:bg-emerald-500/10 blur-3xl" />
 
       <div className="section-container relative">
         <div className="mb-16">

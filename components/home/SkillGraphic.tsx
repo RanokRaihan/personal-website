@@ -78,7 +78,7 @@ const SkillGraphic = ({ skills, activeTab }: SkillGraphicProps) => {
     <div className="flex flex-col items-center gap-5">
       <svg
         viewBox="-20 -20 340 340"
-        className="w-[280px] h-[280px]"
+        className="w-[360px] h-[360px]"
         aria-hidden="true"
       >
         {/* Grid rings — dashed at 25/50/75, solid at 100 */}
