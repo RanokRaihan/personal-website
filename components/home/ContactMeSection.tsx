@@ -1,5 +1,5 @@
-import Image from "next/image";
 import ContactForm from "../forms/ContactForm";
+import ContactGraphic from "./ContactGraphic";
 
 const ContactMeSection = () => {
   return (
@@ -21,13 +21,7 @@ const ContactMeSection = () => {
             <ContactForm />
           </div>
           <div className="flex w-full justify-center lg:w-1/2">
-            <Image
-              src="/assets/images/contact-image.svg"
-              width={460}
-              height={460}
-              alt="Illustration of a person sending a message"
-              className="h-auto w-full max-w-md"
-            />
+            <ContactGraphic />
           </div>
         </div>
       </div>

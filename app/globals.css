@@ -93,13 +93,13 @@
 }
 @layer utilities {
   .shad-input {
-    @apply border-none bg-transparent text-base py-6 pl-12 focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-0 !important;
+    @apply h-12 border-none bg-transparent text-base pl-12 pr-4 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
   .shad-label {
-    @apply text-sm font-medium text-slate-600 dark:text-slate-400;
+    @apply font-mono text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400;
   }
   .shad-textarea {
-    @apply border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/60 text-base focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-0 !important;
+    @apply min-h-[140px] rounded-xl border border-slate-200 bg-white/70 p-4 text-base backdrop-blur-sm transition-colors focus-visible:border-emerald-500/60 focus-visible:ring-0 focus-visible:ring-offset-0 dark:border-white/10 dark:bg-slate-900/60 !important;
   }
   .shad-error {
     @apply text-red-500 dark:text-red-500 !important;
@@ -132,6 +132,21 @@
   @keyframes float {
     0%, 100% { transform: translate(-50%, -50%) translateY(0); }
     50% { transform: translate(-50%, -50%) translateY(-10px); }
+  }
+
+  /* Ping at normal speed, then hold invisible so there's a pause before the next one */
+  @keyframes contact-ping {
+    0% { transform: scale(1); opacity: 1; }
+    40%, 100% { transform: scale(2); opacity: 0; }
+  }
+  .animate-contact-ping {
+    animation: contact-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-contact-ping {
+      animation: none;
+    }
   }
 
   .no-scrollbar {

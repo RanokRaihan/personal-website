@@ -15,7 +15,10 @@ const SubmitButton = ({ isLoading, className, children }: ButtonProps) => {
       variant="green"
       size="lg"
       disabled={isLoading}
-      className={className ?? "w-full text-base disabled:cursor-not-allowed"}
+      className={
+        className ??
+        "w-full rounded-full text-base font-semibold disabled:cursor-not-allowed"
+      }
     >
       {isLoading ? (
         <div className="flex items-center gap-4 cursor-not-allowed">
