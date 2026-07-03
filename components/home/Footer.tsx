@@ -1,24 +1,7 @@
+import { getSiteSettings } from "@/actions/settingAction";
+import { DEFAULT_SETTINGS } from "@/constants";
 import Link from "next/link";
-import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-
-const socials = [
-  {
-    href: "https://github.com/RanokRaihan",
-    label: "GitHub",
-    Icon: FaGithub,
-  },
-  {
-    href: "https://www.linkedin.com/in/ranok-raihan/",
-    label: "LinkedIn",
-    Icon: FaLinkedin,
-  },
-  {
-    href: "mailto:ranokraihan@gmail.com",
-    label: "Email",
-    Icon: FaEnvelope,
-  },
-];
 
 const quickLinks = [
   { href: "/about", label: "About" },
@@ -26,7 +9,28 @@ const quickLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-const Footer: React.FC = () => {
+const Footer = async () => {
+  const result = await getSiteSettings();
+  const s = "name" in result ? result : DEFAULT_SETTINGS;
+
+  const socials = [
+    s.socials.github && {
+      href: s.socials.github,
+      label: "GitHub",
+      Icon: FaGithub,
+    },
+    s.socials.linkedin && {
+      href: s.socials.linkedin,
+      label: "LinkedIn",
+      Icon: FaLinkedin,
+    },
+    s.socials.email && {
+      href: `mailto:${s.socials.email}`,
+      label: "Email",
+      Icon: FaEnvelope,
+    },
+  ].filter(Boolean) as { href: string; label: string; Icon: typeof FaGithub }[];
+
   return (
     <footer className="border-t border-slate-200 bg-slate-50 text-slate-600 dark:border-white/10 dark:bg-[#0B0F14] dark:text-slate-400">
       <div className="section-container py-14">
@@ -34,10 +38,11 @@ const Footer: React.FC = () => {
           {/* About */}
           <div className="max-w-sm">
             <h3 className="font-display text-lg font-bold text-slate-900 dark:text-slate-50">
-              Ranok Raihan<span className="text-emerald-500">.</span>
+              {s.name}
+              <span className="text-emerald-500">.</span>
             </h3>
             <p className="mt-3 text-sm leading-relaxed">
-              Building beautiful, performant, and accessible web experiences.
+              {s.footerText || DEFAULT_SETTINGS.footerText}
             </p>
             <div className="mt-5 flex gap-3">
               {socials.map(({ href, label, Icon }) => (
@@ -80,7 +85,7 @@ const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="mt-12 border-t border-slate-200 pt-6 dark:border-white/10">
           <p className="text-sm">
-            © {new Date().getFullYear()} Ranok Raihan. All rights reserved.
+            © {new Date().getFullYear()} {s.name}. All rights reserved.
           </p>
         </div>
       </div>
