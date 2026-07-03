@@ -1,5 +1,6 @@
 import { getAllCertifications } from "@/actions/certificationAction";
-import CertificationCard from "./CertificationCard";
+import CertificationSummary from "./CertificationSummary";
+import CertificationTimelineItem from "./CertificationTimelineItem";
 
 const CertificationContainer = async () => {
   const result = await getAllCertifications();
@@ -22,20 +23,36 @@ const CertificationContainer = async () => {
     );
   }
 
-  return (
-    <div className="relative">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent dark:from-slate-900" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent dark:from-slate-900" />
+  const issuers = new Set(featured.map((c) => c.issuer)).size;
+  const lifetime = featured.filter((c) => c.isLifetime).length;
 
-      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 -mx-4">
-        {featured.map((certification, index) => (
-          <CertificationCard
-            key={certification._id}
-            certification={certification}
-            index={index}
-          />
-        ))}
+  return (
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-14">
+      <div className="relative">
+        <div
+          aria-hidden
+          className="absolute left-4 top-1 bottom-1 w-px bg-gradient-to-b from-amber-400/70 via-orange-400/30 to-transparent sm:left-6 md:left-8"
+        />
+        <ol className="space-y-10 sm:space-y-12">
+          {featured.map((certification, index) => (
+            <li
+              key={certification._id}
+              className="relative pl-12 sm:pl-16 md:pl-20"
+            >
+              <CertificationTimelineItem
+                certification={certification}
+                index={index}
+              />
+            </li>
+          ))}
+        </ol>
       </div>
+
+      <CertificationSummary
+        total={featured.length}
+        issuers={issuers}
+        lifetime={lifetime}
+      />
     </div>
   );
 };

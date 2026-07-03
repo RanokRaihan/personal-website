@@ -3,29 +3,34 @@ import { Skeleton } from "../ui/skeleton";
 import CertificationContainer from "./CertificationContainer";
 
 const CertificationSkeleton = () => (
-  <div className="flex gap-6 overflow-hidden pb-4 -mx-4 px-4">
-    {Array.from({ length: 3 }).map((_, i) => (
+  <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-14">
+    <div className="relative">
       <div
-        key={i}
-        className="w-[300px] sm:w-[340px] shrink-0 rounded-xl border border-slate-200/80 bg-white p-6 dark:border-slate-700/60 dark:bg-slate-800/60"
-      >
-        <div className="flex items-start gap-3">
-          <Skeleton className="h-11 w-11 shrink-0 rounded-lg" />
-          <div className="flex-1 space-y-2">
-            <Skeleton className="h-4 w-3/4" />
-            <Skeleton className="h-3 w-1/2" />
+        aria-hidden
+        className="absolute left-4 top-1 bottom-1 w-px bg-slate-200 dark:bg-slate-700 sm:left-6 md:left-8"
+      />
+      <div className="space-y-10 sm:space-y-12">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="relative pl-12 sm:pl-16 md:pl-20">
+            <Skeleton className="absolute left-4 top-1 h-8 w-8 -translate-x-1/2 rounded-full sm:left-6 md:left-8" />
+            <div className="flex flex-col gap-4 md:flex-row md:items-start">
+              <Skeleton className="h-32 w-full max-w-[220px] rounded-lg" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-5 w-2/3" />
+                <Skeleton className="h-4 w-1/3" />
+                <Skeleton className="h-5 w-24 rounded-full" />
+                <Skeleton className="h-3 w-1/2" />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="mt-4 flex items-center justify-between gap-2">
-          <Skeleton className="h-5 w-24 rounded-full" />
-          <Skeleton className="h-3 w-16" />
-        </div>
-        <div className="mt-4 flex gap-3 border-t border-slate-100 pt-3 dark:border-slate-700/50">
-          <Skeleton className="h-4 w-14" />
-          <Skeleton className="h-4 w-20" />
-        </div>
+        ))}
       </div>
-    ))}
+    </div>
+
+    <div className="flex flex-col gap-6">
+      <Skeleton className="h-36 w-full rounded-2xl" />
+      <Skeleton className="h-28 w-full rounded-2xl" />
+    </div>
   </div>
 );
 
