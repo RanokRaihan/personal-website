@@ -1,4 +1,4 @@
-import { getAllSkills } from "@/lib/actions/skillAction";
+import { getAllSkills } from "@/actions/skillAction";
 import SkillDisplay from "./SkillDisplay";
 
 const SkillContainer = async () => {

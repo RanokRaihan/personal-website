@@ -1,4 +1,5 @@
 export * from "./blogType";
+export * from "./certificationType";
 export * from "./projectType";
 export * from "./skillType";
 export * from "./userType";

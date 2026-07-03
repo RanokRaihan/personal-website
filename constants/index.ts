@@ -11,8 +11,8 @@ export const introStrings = [
 ];
 export const menuItems = [
   { href: "/", label: "Home", icon: Home },
-  { href: "/projects", label: "Projects", icon: FolderOpen },
-  { href: "/blogs", label: "Blogs", icon: BookOpen },
+  { href: "/project", label: "Projects", icon: FolderOpen },
+  { href: "/blog", label: "Blogs", icon: BookOpen },
   { href: "/about", label: "About", icon: User },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
