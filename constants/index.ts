@@ -8,7 +8,7 @@ import {
   Server,
   User,
 } from "lucide-react";
-import type { ISetting } from "@/types";
+import type { IProject, ISetting } from "@/types";
 
 export const RESUME_URL =
   "https://drive.usercontent.google.com/download?id=1lEx5YGciXzGNWiaD_YvzWYxMVZ1QyGDU&export=download&authuser=0&confirm=t&uuid=e8998cd1-6860-4031-88cb-286c389cf6ae&at=ALoNOgm1fFI0q-yOvy-5Q8nKzj0O:1748285210785";
@@ -69,8 +69,78 @@ export const introStrings = [
 ];
 export const menuItems = [
   { href: "/", label: "Home", icon: Home },
-  { href: "/project", label: "Projects", icon: FolderOpen },
+  { href: "/projects", label: "Projects", icon: FolderOpen },
   { href: "/blog", label: "Blogs", icon: BookOpen },
   { href: "/about", label: "About", icon: User },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
+
+// ── Project filter options ────────────────────────────────────────────────
+// Shared by the projects listing filters and the project detail meta badges.
+// Values mirror the IProject enum unions from the public API contract.
+
+export const CATEGORY_LABELS: Record<IProject["category"], string> = {
+  FULL_STACK: "Full Stack",
+  FRONTEND: "Frontend",
+  BACKEND: "Backend",
+  MOBILE: "Mobile",
+  CLI_TOOL: "CLI Tool",
+  LIBRARY: "Library",
+  API: "API",
+  PACKAGE: "Package",
+  OTHER: "Other",
+};
+
+export const TYPE_LABELS: Record<IProject["type"], string> = {
+  PERSONAL: "Personal",
+  FREELANCE: "Freelance",
+  OPEN_SOURCE: "Open Source",
+  CLIENT: "Client",
+  HACKATHON: "Hackathon",
+  OTHER: "Other",
+};
+
+export const COMPLEXITY_LABELS: Record<IProject["complexity"], string> = {
+  BEGINNER: "Beginner",
+  INTERMEDIATE: "Intermediate",
+  ADVANCED: "Advanced",
+};
+
+export const COMPLEXITY_COLORS: Record<IProject["complexity"], string> = {
+  BEGINNER:
+    "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+  INTERMEDIATE:
+    "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+  ADVANCED:
+    "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+};
+
+export type FilterOption = { value: string; label: string };
+
+export const PROJECT_CATEGORIES: FilterOption[] = (
+  Object.keys(CATEGORY_LABELS) as IProject["category"][]
+).map((value) => ({ value, label: CATEGORY_LABELS[value] }));
+
+export const PROJECT_TYPES: FilterOption[] = (
+  Object.keys(TYPE_LABELS) as IProject["type"][]
+).map((value) => ({ value, label: TYPE_LABELS[value] }));
+
+export const PROJECT_COMPLEXITIES: FilterOption[] = (
+  Object.keys(COMPLEXITY_LABELS) as IProject["complexity"][]
+).map((value) => ({ value, label: COMPLEXITY_LABELS[value] }));
+
+export type SortOption = {
+  value: string;
+  label: string;
+  sortBy: string;
+  sortOrder: "asc" | "desc";
+};
+
+export const PROJECT_SORT_OPTIONS: SortOption[] = [
+  { value: "newest", label: "Newest", sortBy: "createdAt", sortOrder: "desc" },
+  { value: "oldest", label: "Oldest", sortBy: "createdAt", sortOrder: "asc" },
+  { value: "az", label: "A–Z", sortBy: "title", sortOrder: "asc" },
+  { value: "za", label: "Z–A", sortBy: "title", sortOrder: "desc" },
+];
+
+export const PROJECTS_PER_PAGE = 9;
