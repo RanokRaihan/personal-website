@@ -30,16 +30,43 @@ export interface IProject {
   status: "PUBLISHED";
   complexity: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
   myRole: string;
+
+  // Media
   coverImage: string;
+  images?: string[];
+  videoUrl?: string;
+  demoGifUrl?: string;
+
+  // Content
   highlights: string[];
+  challenges?: string;
+  lessons?: string;
   techStack: Record<string, string[]>;
   tags: string[];
-  featured: boolean;
-  isFeaturedOnHome: boolean;
+
+  // Links
   frontendLiveUrl?: string;
   backendLiveUrl?: string;
   frontendRepoUrl?: string;
   backendRepoUrl?: string;
+  caseStudyUrl?: string;
+  npmUrl?: string;
+  devToUrl?: string;
+  figmaUrl?: string;
+
+  // Stats
+  linesOfCode?: number;
+  githubStars?: number;
+  npmDownloads?: number;
+  activeUsers?: number;
+
+  // Team
+  teamSize?: number;
+  contributors?: string[];
+
+  // Flags & dates
+  featured: boolean;
+  isFeaturedOnHome: boolean;
   startedAt?: string;
   completedAt?: string;
   createdAt: string;

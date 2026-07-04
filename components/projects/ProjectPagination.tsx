@@ -2,9 +2,16 @@
 
 import { useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import type { ProjectListMeta } from "@/actions/projectAction";
 
 interface ProjectPaginationProps {
@@ -33,78 +40,87 @@ const ProjectPagination = ({ meta }: ProjectPaginationProps) => {
 
   const { page, totalPage } = meta;
 
-  const goToPage = useCallback(
+  // Builds the href for a target page (page=1 is the clean, param-less URL).
+  const hrefFor = useCallback(
     (target: number) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (target <= 1) {
-        params.delete("page");
-      } else {
-        params.set("page", String(target));
-      }
+      if (target <= 1) params.delete("page");
+      else params.set("page", String(target));
       const query = params.toString();
-      router.push(query ? `${pathname}?${query}` : pathname, { scroll: true });
+      return query ? `${pathname}?${query}` : pathname;
     },
-    [pathname, router, searchParams],
+    [pathname, searchParams],
+  );
+
+  const goToPage = useCallback(
+    (target: number) => router.push(hrefFor(target), { scroll: true }),
+    [hrefFor, router],
   );
 
   if (totalPage <= 1) return null;
 
   const pages = buildPageList(page, totalPage);
+  const isFirst = page <= 1;
+  const isLast = page >= totalPage;
 
   return (
-    <nav
-      aria-label="Pagination"
-      className="mt-12 flex items-center justify-center gap-1.5"
-    >
-      <Button
-        variant="outline"
-        size="icon"
-        aria-label="Previous page"
-        disabled={page <= 1}
-        onClick={() => goToPage(page - 1)}
-        className="h-9 w-9"
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
-
-      {pages.map((p, i) =>
-        p === "…" ? (
-          <span
-            key={`gap-${i}`}
-            className="px-2 text-sm text-slate-400 dark:text-slate-500 select-none"
-          >
-            …
-          </span>
-        ) : (
-          <Button
-            key={p}
-            variant={p === page ? "default" : "outline"}
-            size="icon"
-            aria-label={`Page ${p}`}
-            aria-current={p === page ? "page" : undefined}
-            onClick={() => goToPage(p)}
+    <Pagination className="mt-12">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            href={hrefFor(page - 1)}
+            aria-disabled={isFirst}
             className={
-              p === page
-                ? "h-9 w-9 bg-blue-600 hover:bg-blue-600 text-white"
-                : "h-9 w-9"
+              isFirst ? "pointer-events-none opacity-50" : "cursor-pointer"
             }
-          >
-            {p}
-          </Button>
-        ),
-      )}
+            onClick={(e) => {
+              e.preventDefault();
+              if (!isFirst) goToPage(page - 1);
+            }}
+          />
+        </PaginationItem>
 
-      <Button
-        variant="outline"
-        size="icon"
-        aria-label="Next page"
-        disabled={page >= totalPage}
-        onClick={() => goToPage(page + 1)}
-        className="h-9 w-9"
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
-    </nav>
+        {pages.map((p, i) =>
+          p === "…" ? (
+            <PaginationItem key={`gap-${i}`}>
+              <PaginationEllipsis />
+            </PaginationItem>
+          ) : (
+            <PaginationItem key={p}>
+              <PaginationLink
+                href={hrefFor(p)}
+                isActive={p === page}
+                className={
+                  p === page
+                    ? "cursor-pointer border-blue-500/70 bg-blue-600 text-white hover:bg-blue-600 hover:text-white dark:bg-blue-600 dark:text-white dark:hover:bg-blue-600"
+                    : "cursor-pointer"
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  goToPage(p);
+                }}
+              >
+                {p}
+              </PaginationLink>
+            </PaginationItem>
+          ),
+        )}
+
+        <PaginationItem>
+          <PaginationNext
+            href={hrefFor(page + 1)}
+            aria-disabled={isLast}
+            className={
+              isLast ? "pointer-events-none opacity-50" : "cursor-pointer"
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              if (!isLast) goToPage(page + 1);
+            }}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 };
 

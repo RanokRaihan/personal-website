@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Search, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -13,6 +14,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
   PROJECT_CATEGORIES,
   PROJECT_COMPLEXITIES,
   PROJECT_SORT_OPTIONS,
@@ -20,11 +30,8 @@ import {
   type FilterOption,
 } from "@/constants";
 
-const pillBase =
-  "px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200";
-const pillActive = "bg-blue-600 text-white shadow-sm shadow-blue-500/20";
-const pillIdle =
-  "bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-blue-400/40 hover:text-slate-800 dark:hover:text-slate-200";
+// Radix Select forbids empty-string values, so the "All" option uses a sentinel.
+const ALL = "__all__";
 
 // Matches a stored sortBy/sortOrder pair back to a named sort option.
 const matchSortValue = (sortBy: string | null, sortOrder: string | null) => {
@@ -33,6 +40,38 @@ const matchSortValue = (sortBy: string | null, sortOrder: string | null) => {
   );
   return found?.value ?? PROJECT_SORT_OPTIONS[0].value;
 };
+
+// ── Reusable labelled dropdown ────────────────────────────────────────────
+const FilterSelect = ({
+  label,
+  options,
+  value,
+  onChange,
+  className,
+}: {
+  label: string;
+  options: FilterOption[];
+  value: string | null;
+  onChange: (value: string | undefined) => void;
+  className?: string;
+}) => (
+  <Select
+    value={value ?? ALL}
+    onValueChange={(v) => onChange(v === ALL ? undefined : v)}
+  >
+    <SelectTrigger className={className} aria-label={label}>
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value={ALL}>All {label}</SelectItem>
+      {options.map((opt) => (
+        <SelectItem key={opt.value} value={opt.value}>
+          {opt.label}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+);
 
 const ProjectFilters = () => {
   const router = useRouter();
@@ -63,10 +102,6 @@ const ProjectFilters = () => {
     },
     [pathname, router, searchParams],
   );
-
-  // Toggle a single-select filter group (clicking the active value clears it).
-  const toggleFilter = (key: string, value: string, current: string | null) =>
-    applyParams({ [key]: current === value ? undefined : value });
 
   const onSortChange = (value: string) => {
     const option = PROJECT_SORT_OPTIONS.find((o) => o.value === value);
@@ -99,10 +134,13 @@ const ProjectFilters = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
 
+  const activeFilterCount =
+    (activeCategory ? 1 : 0) +
+    (activeType ? 1 : 0) +
+    (activeComplexity ? 1 : 0);
+
   const hasActiveFilters =
-    !!activeCategory ||
-    !!activeType ||
-    !!activeComplexity ||
+    activeFilterCount > 0 ||
     !!urlSearch ||
     sortValue !== PROJECT_SORT_OPTIONS[0].value;
 
@@ -111,43 +149,59 @@ const ProjectFilters = () => {
     router.replace(pathname, { scroll: false });
   };
 
-  const renderGroup = (
-    label: string,
-    key: string,
-    options: FilterOption[],
-    current: string | null,
-  ) => (
-    <div className="flex flex-wrap items-center gap-2">
-      <span className="mr-1 text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500">
-        {label}
-      </span>
-      <button
-        type="button"
-        onClick={() => applyParams({ [key]: undefined })}
-        className={`${pillBase} ${!current ? pillActive : pillIdle}`}
+  // The three category/type/level dropdowns — shared by desktop row & mobile sheet.
+  const filterSelects = (fullWidth = false) => {
+    const width = fullWidth ? "w-full" : "w-[150px]";
+    return (
+      <>
+        <FilterSelect
+          label="Categories"
+          options={PROJECT_CATEGORIES}
+          value={activeCategory}
+          onChange={(v) => applyParams({ category: v })}
+          className={width}
+        />
+        <FilterSelect
+          label="Types"
+          options={PROJECT_TYPES}
+          value={activeType}
+          onChange={(v) => applyParams({ type: v })}
+          className={width}
+        />
+        <FilterSelect
+          label="Levels"
+          options={PROJECT_COMPLEXITIES}
+          value={activeComplexity}
+          onChange={(v) => applyParams({ complexity: v })}
+          className={width}
+        />
+      </>
+    );
+  };
+
+  const sortSelect = (fullWidth = false) => (
+    <Select value={sortValue} onValueChange={onSortChange}>
+      <SelectTrigger
+        className={fullWidth ? "w-full" : "w-[140px]"}
+        aria-label="Sort projects"
       >
-        All
-      </button>
-      {options.map((opt) => (
-        <button
-          key={opt.value}
-          type="button"
-          onClick={() => toggleFilter(key, opt.value, current)}
-          className={`${pillBase} ${
-            current === opt.value ? pillActive : pillIdle
-          }`}
-        >
-          {opt.label}
-        </button>
-      ))}
-    </div>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {PROJECT_SORT_OPTIONS.map((opt) => (
+          <SelectItem key={opt.value} value={opt.value}>
+            {opt.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 
   return (
-    <div className="mb-12 flex flex-col gap-5">
-      {/* Search + sort row */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative w-full sm:max-w-xs">
+    <div className="mb-12">
+      <div className="flex items-center gap-3">
+        {/* Search — always visible, grows to fill the row */}
+        <div className="relative flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
           <Input
             type="search"
@@ -159,47 +213,108 @@ const ProjectFilters = () => {
           />
         </div>
 
-        <div className="flex items-center gap-3">
+        {/* Desktop — all filters inline on one row */}
+        <div className="hidden items-center gap-3 lg:flex">
+          {filterSelects()}
+          <div className="h-6 w-px bg-slate-200 dark:bg-slate-700" />
+          {sortSelect()}
           {hasActiveFilters && (
             <button
               type="button"
               onClick={clearAll}
-              className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors"
+              className="inline-flex items-center gap-1 whitespace-nowrap text-xs font-mono uppercase tracking-wider text-slate-500 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
             >
               <X className="h-3.5 w-3.5" />
               Clear
             </button>
           )}
-          <Select value={sortValue} onValueChange={onSortChange}>
-            <SelectTrigger className="w-[140px]" aria-label="Sort projects">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {PROJECT_SORT_OPTIONS.map((opt) => (
-                <SelectItem key={opt.value} value={opt.value}>
-                  {opt.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
         </div>
-      </div>
 
-      {/* Filter groups */}
-      <div className="flex flex-col gap-3">
-        {renderGroup(
-          "Category",
-          "category",
-          PROJECT_CATEGORIES,
-          activeCategory,
-        )}
-        {renderGroup("Type", "type", PROJECT_TYPES, activeType)}
-        {renderGroup(
-          "Level",
-          "complexity",
-          PROJECT_COMPLEXITIES,
-          activeComplexity,
-        )}
+        {/* Mobile / tablet — filters live in a slide-out sheet */}
+        <div className="lg:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" className="relative gap-2">
+                <SlidersHorizontal className="h-4 w-4" />
+                <span className="hidden sm:inline">Filters</span>
+                {activeFilterCount > 0 && (
+                  <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1 text-[11px] font-semibold text-white">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="flex w-full flex-col gap-0 sm:max-w-sm"
+            >
+              <SheetHeader>
+                <SheetTitle>Filters</SheetTitle>
+              </SheetHeader>
+
+              <div className="flex flex-1 flex-col gap-6 overflow-y-auto py-6">
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                    Category
+                  </span>
+                  <FilterSelect
+                    label="Categories"
+                    options={PROJECT_CATEGORIES}
+                    value={activeCategory}
+                    onChange={(v) => applyParams({ category: v })}
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                    Type
+                  </span>
+                  <FilterSelect
+                    label="Types"
+                    options={PROJECT_TYPES}
+                    value={activeType}
+                    onChange={(v) => applyParams({ type: v })}
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                    Level
+                  </span>
+                  <FilterSelect
+                    label="Levels"
+                    options={PROJECT_COMPLEXITIES}
+                    value={activeComplexity}
+                    onChange={(v) => applyParams({ complexity: v })}
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                    Sort by
+                  </span>
+                  {sortSelect(true)}
+                </div>
+              </div>
+
+              <SheetFooter className="flex-row gap-3 border-t border-slate-200 pt-4 dark:border-slate-800">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={clearAll}
+                  disabled={!hasActiveFilters}
+                >
+                  Clear all
+                </Button>
+                <SheetClose asChild>
+                  <Button variant="primary" className="flex-1">
+                    Show results
+                  </Button>
+                </SheetClose>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </div>
   );
