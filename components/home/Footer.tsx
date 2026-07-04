@@ -9,6 +9,11 @@ const quickLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const legalLinks = [
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/privacy", label: "Privacy Policy" },
+];
+
 const Footer = async () => {
   const result = await getSiteSettings();
   const s = "name" in result ? result : DEFAULT_SETTINGS;
@@ -83,10 +88,22 @@ const Footer = async () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-12 border-t border-slate-200 pt-6 dark:border-white/10">
+        <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm">
             © {new Date().getFullYear()} {s.name}. All rights reserved.
           </p>
+          <ul className="flex gap-6">
+            {legalLinks.map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="text-sm transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

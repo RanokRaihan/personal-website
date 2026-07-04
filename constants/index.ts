@@ -144,3 +144,15 @@ export const PROJECT_SORT_OPTIONS: SortOption[] = [
 ];
 
 export const PROJECTS_PER_PAGE = 9;
+
+// ── Blog filter options ───────────────────────────────────────────────────
+// The public blog API only supports search + sort (see api-contract-public/blog.md).
+
+export const BLOG_SORT_OPTIONS: SortOption[] = [
+  { value: "newest", label: "Newest", sortBy: "publishedAt", sortOrder: "desc" },
+  { value: "oldest", label: "Oldest", sortBy: "publishedAt", sortOrder: "asc" },
+  { value: "popular", label: "Most read", sortBy: "views", sortOrder: "desc" },
+  { value: "az", label: "A–Z", sortBy: "title", sortOrder: "asc" },
+];
+
+export const BLOGS_PER_PAGE = 9;
