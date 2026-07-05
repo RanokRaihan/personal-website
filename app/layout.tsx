@@ -1,12 +1,20 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-const inter = Inter({ subsets: ["latin"] });
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: "Ranok Raihan - Full Stack Developer",
@@ -53,8 +61,11 @@ export default function RootLayout({
         <head />
         <body
           className={cn(
-            "dark:text-slate-100 dark:bg-slate-900 bg-slate-100/50 remove-scrollbar ",
-            inter.className
+            "remove-scrollbar bg-[#FBFCFD] text-slate-900 dark:bg-[#0B0F14] dark:text-slate-100",
+            inter.variable,
+            spaceGrotesk.variable,
+            jetBrainsMono.variable,
+            "font-sans",
           )}
         >
           <ThemeProvider
@@ -64,8 +75,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
             <NextTopLoader showSpinner={false} />
-            <ToastContainer position="top-right" autoClose={2000} />
           </ThemeProvider>
         </body>
       </html>
