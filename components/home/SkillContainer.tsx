@@ -3,6 +3,7 @@ import SkillDisplay from "./SkillDisplay";
 
 const SkillContainer = async () => {
   const result = await getAllSkills();
+  console.log("SkillContainer result:", JSON.stringify(result, null, 2)); // Log the result for debugging
 
   if (!Array.isArray(result)) {
     return (
