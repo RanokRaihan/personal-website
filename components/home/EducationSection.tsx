@@ -1,4 +1,4 @@
-import { GraduationCap, Sparkles } from "lucide-react";
+import { ArrowRightLeft, GraduationCap } from "lucide-react";
 import React from "react";
 
 const EducationSection: React.FC = () => {
@@ -41,7 +41,7 @@ const EducationSection: React.FC = () => {
 
           <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-slate-900/60">
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-              <Sparkles className="h-4 w-4" />
+              <ArrowRightLeft className="h-4 w-4" />
               <h3 className="font-mono text-xs uppercase tracking-[0.2em]">
                 The pivot
               </h3>
@@ -52,9 +52,9 @@ const EducationSection: React.FC = () => {
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               My academic background is in physics, but I found my craft in
               programming. The analytical thinking I built studying physics
-              shapes how I approach engineering today — and I&apos;ve since
-              gone all-in on web technologies through self-study and
-              hands-on project work.
+              shapes how I approach engineering today — and I&apos;ve since gone
+              all-in on web technologies through self-study and hands-on project
+              work.
             </p>
           </div>
         </div>
