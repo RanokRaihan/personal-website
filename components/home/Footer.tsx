@@ -1,5 +1,4 @@
 import { getSiteSettings } from "@/actions/settingAction";
-import { DEFAULT_SETTINGS } from "@/constants";
 import Link from "next/link";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -15,8 +14,7 @@ const legalLinks = [
 ];
 
 const Footer = async () => {
-  const result = await getSiteSettings();
-  const s = "name" in result ? result : DEFAULT_SETTINGS;
+  const s = await getSiteSettings();
 
   const socials = [
     s.socials.github && {
@@ -47,7 +45,7 @@ const Footer = async () => {
               <span className="text-emerald-500">.</span>
             </h3>
             <p className="mt-3 text-sm leading-relaxed">
-              {s.footerText || DEFAULT_SETTINGS.footerText}
+              {s.footerText}
             </p>
             <div className="mt-5 flex gap-3">
               {socials.map(({ href, label, Icon }) => (
