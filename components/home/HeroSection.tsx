@@ -1,5 +1,5 @@
 import { getSiteSettings } from "@/actions/settingAction";
-import { DEFAULT_SETTINGS, introStrings } from "@/constants";
+import { introStrings } from "@/constants";
 import {
   DownloadIcon,
   GitHubLogoIcon,
@@ -12,8 +12,7 @@ import HeroImage from "./HeroImage";
 import TypeAnimation from "./TypeAnimation";
 
 const HeroSection = async () => {
-  const result = await getSiteSettings();
-  const s = "name" in result ? result : DEFAULT_SETTINGS;
+  const s = await getSiteSettings();
 
   const { github, linkedin, email } = s.socials;
 

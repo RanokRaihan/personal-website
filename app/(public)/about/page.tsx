@@ -8,7 +8,6 @@ import AboutSidebar from "@/components/about/AboutSidebar";
 import AboutStack from "@/components/about/AboutStack";
 import AboutTimeline from "@/components/about/AboutTimeline";
 import AboutValues from "@/components/about/AboutValues";
-import { DEFAULT_SETTINGS } from "@/constants";
 
 export const metadata: Metadata = {
   title: "About · Ranok Raihan",
@@ -17,8 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const result = await getSiteSettings();
-  const settings = "name" in result ? result : DEFAULT_SETTINGS;
+  const settings = await getSiteSettings();
 
   return (
     <section className="section-shell">
