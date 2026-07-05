@@ -1,27 +1,27 @@
-import Image from "next/image";
 import ContactForm from "../forms/ContactForm";
+import ContactGraphic from "./ContactGraphic";
 
 const ContactMeSection = () => {
   return (
-    <section className="bg-emerald-100/25 dark:bg-slate-950/25 py-4 min-h-screen flex items-center">
-      <div className="container mx-auto p-4 text-center space-y-6">
-        <h2 className="mb-4">
-          <span className="home-heading">Contact Me</span>
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300">
-          I would love to hear from you! Whether you have a question, want to
-          collaborate, or just want to say hi, feel free to reach out using the
-          form below.
-        </p>
-        <div className="flex flex-col-reverse gap-8 lg:flex-row items-center justify-between">
-          <ContactForm />
-          <div className="lg:w-1/2 w-full flex justify-center items-center mt-4 lg:mt-0 p-6">
-            <Image
-              src="/assets/images/contact-image.svg"
-              width={500}
-              height={500}
-              alt="My Skills"
-            />
+    <section id="contact" className="section-shell">
+      <div className="section-container">
+        {/* Heading */}
+        <div className="mb-14 text-center md:text-left">
+          <span className="section-eyebrow">{"// contact"}</span>
+          <h2 className="section-heading mt-3">Let&apos;s build something</h2>
+          <div className="section-rule mx-auto md:mx-0" />
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg dark:text-slate-300">
+            Have a question, a project in mind, or just want to say hi? Drop me a
+            message and I&apos;ll get back to you.
+          </p>
+        </div>
+
+        <div className="flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-start lg:justify-between">
+          <div className="w-full lg:w-1/2">
+            <ContactForm />
+          </div>
+          <div className="flex w-full justify-center lg:w-1/2">
+            <ContactGraphic />
           </div>
         </div>
       </div>

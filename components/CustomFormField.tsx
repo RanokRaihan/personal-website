@@ -68,12 +68,10 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
-          {props.icon && (
-            <div className="absolute l-0 t-0 flex items-center justify-center w-12 h-full rounded-l-md">
-              {icon}
-            </div>
-          )}
+        <div className="relative flex rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm transition-colors focus-within:border-emerald-500/60 dark:border-white/10 dark:bg-slate-900/60">
+          <div className="pointer-events-none absolute left-0 top-0 flex h-full w-12 items-center justify-center text-slate-400 [&_svg]:h-5 [&_svg]:w-5">
+            {icon}
+          </div>
           <FormControl>
             <Input
               placeholder={placeholder}
@@ -86,8 +84,8 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.EMAIL:
       return (
-        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
-          <div className="absolute l-0 t-0 flex items-center justify-center w-12 h-full rounded-l-md">
+        <div className="relative flex rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm transition-colors focus-within:border-emerald-500/60 dark:border-white/10 dark:bg-slate-900/60">
+          <div className="pointer-events-none absolute left-0 top-0 flex h-full w-12 items-center justify-center text-slate-400 [&_svg]:h-5 [&_svg]:w-5">
             <MailIcon />
           </div>
 
@@ -103,7 +101,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.PASSWORD:
       return (
-        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
+        <div className="relative flex rounded-md border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/60 transition-colors focus-within:border-emerald-500/60">
           <div className="absolute  flex items-center justify-center w-12 h-full rounded-l-md">
             <LockIcon />
           </div>
@@ -152,7 +150,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.DATE_PICKER:
       return (
-        <div className="relative flex rounded-md border border-slate-300 dark:border-slate-700  bg-white dark:bg-slate-950/25 ">
+        <div className="relative flex rounded-md border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/60 transition-colors focus-within:border-emerald-500/60">
           <div className="absolute l-0 t-0 flex items-center justify-center w-12 h-full rounded-l-md z-50">
             <CalendarIcon />
           </div>

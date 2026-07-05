@@ -1,156 +1,60 @@
-import { ExternalLink } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "../ui/button";
+import { Suspense } from "react";
+import { Skeleton } from "../ui/skeleton";
+import CertificationContainer from "./CertificationContainer";
 
-interface CertificationProps {
-  id: string;
-  title: string;
-  institute: string;
-  year: string;
-  duration: string;
-  description: string;
-  image: string;
-  verificationLink: string;
-}
-
-const certifications: CertificationProps[] = [
-  {
-    id: "cert-1",
-    title: "Complete Web Development Course ",
-    institute: "Programming Hero",
-    year: "2021",
-    duration: "6 months",
-    description:
-      "Comprehensive training in MERN stack development, covering React, Node.js, Express, and MongoDB along with modern web development practices.",
-    image: "/assets/images/certificates/web-development.png",
-    verificationLink: "https://verification.example.com/cert-12345",
-  },
-  {
-    id: "cert-2",
-    title: "Think in a Redux way",
-    institute: "Learn with Sumit",
-    year: "2022",
-    duration: "3 months",
-    description:
-      "In-depth course on state management using Redux, focusing on building scalable applications with predictable state management patterns.",
-    image: "/assets/images/certificates/LWS-redux-Certificate.jpg",
-    verificationLink:
-      "https://learnwithsumit.com/certificates/verify/LWSCTXN-IW68ZOA2",
-  },
-  {
-    id: "cert-3",
-    title: "Reactive Accelerator",
-    institute: "Learn with Sumit",
-    year: "2024",
-    duration: "6 months",
-    description:
-      "Advanced course on React and Next.js, covering server-side rendering, static site generation, and building high-performance web applications.",
-    image: "/assets/images/certificates/LWS-react-Certificate.jpg",
-    verificationLink:
-      "https://learnwithsumit.com/certificates/verify/LWSCTXN-7WSJUM64",
-  },
-  {
-    id: "cert-4",
-    title: "Next Level Web Development",
-    institute: "Programming Hero",
-    year: "2025",
-    duration: "6 months",
-    description:
-      "Comprehensive training on Next.js, SQL, PostgreSQL, Prisma, MongoDB, and Mongoose. Covered advanced web development concepts, full-stack integration, and best practices for scalable applications.",
-    image: "/assets/images/certificates/next-level.png",
-    verificationLink: "https://verification.example.com/cert-67890",
-  },
-];
-
-const CertificationCard = ({
-  certification,
-}: {
-  certification: CertificationProps;
-}) => {
-  return (
-    <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden w-full mb-8">
-      <div className="flex flex-col md:flex-row">
-        {/* Certificate Image (Left) */}
-        <div className="md:w-1/3 p-4 flex items-center justify-center bg-slate-100 dark:bg-slate-700/50">
-          <div className="relative w-full h-48 md:h-64 flex items-center justify-center">
-            <Image
-              src={certification.image}
-              alt={certification.title}
-              width={300}
-              height={200}
-              className="object-contain p-2"
-            />
-          </div>
-        </div>
-
-        {/* Certificate Details (Right) */}
-        <div className="md:w-2/3 p-6">
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
-            {certification.title}
-          </h3>
-
-          <div className="space-y-2 mb-4">
-            <div className="flex items-start">
-              <span className="font-semibold w-24 text-gray-700 dark:text-gray-300">
-                Institute:
-              </span>
-              <span className="text-gray-600 dark:text-gray-400">
-                {certification.institute}
-              </span>
-            </div>
-
-            <div className="flex items-start">
-              <span className="font-semibold w-24 text-gray-700 dark:text-gray-300">
-                Year:
-              </span>
-              <span className="text-gray-600 dark:text-gray-400">
-                {certification.year}
-              </span>
-            </div>
-
-            <div className="flex items-start">
-              <span className="font-semibold w-24 text-gray-700 dark:text-gray-300">
-                Duration:
-              </span>
-              <span className="text-gray-600 dark:text-gray-400">
-                {certification.duration}
-              </span>
+const CertificationSkeleton = () => (
+  <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-14">
+    <div className="relative">
+      <div
+        aria-hidden
+        className="absolute left-4 top-1 bottom-1 w-px bg-slate-200 dark:bg-slate-700 sm:left-6 md:left-8"
+      />
+      <div className="space-y-10 sm:space-y-12">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="relative pl-12 sm:pl-16 md:pl-20">
+            <Skeleton className="absolute left-4 top-1 h-8 w-8 -translate-x-1/2 rounded-full sm:left-6 md:left-8" />
+            <div className="flex flex-col gap-4 md:flex-row md:items-start">
+              <Skeleton className="h-32 w-full max-w-[220px] rounded-lg" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-5 w-2/3" />
+                <Skeleton className="h-4 w-1/3" />
+                <Skeleton className="h-5 w-24 rounded-full" />
+                <Skeleton className="h-3 w-1/2" />
+              </div>
             </div>
           </div>
-
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            {certification.description}
-          </p>
-
-          <Button asChild variant="outline" className="flex items-center gap-2">
-            <Link
-              href={certification.verificationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Verify Certificate <ExternalLink className="h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
+        ))}
       </div>
     </div>
-  );
-};
+
+    <div className="flex flex-col gap-6">
+      <Skeleton className="h-36 w-full rounded-2xl" />
+      <Skeleton className="h-28 w-full rounded-2xl" />
+    </div>
+  </div>
+);
 
 const CertificationSection = () => {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center mb-12">
-          <span className="home-heading">Certifications</span>
-        </h2>
+    <section className="section-shell relative overflow-hidden">
+      {/* Ambient glow — amber/gold to distinguish from Skills' emerald and Projects' blue/indigo */}
+      <div className="pointer-events-none absolute top-0 -left-32 h-[420px] w-[420px] rounded-full bg-amber-400/8 dark:bg-amber-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-orange-400/6 dark:bg-orange-500/8 blur-3xl" />
 
-        <div className="space-y-8">
-          {certifications.map((cert) => (
-            <CertificationCard key={cert.id} certification={cert} />
-          ))}
+      <div className="section-container relative">
+        <div className="mb-16">
+          <p className="section-eyebrow mb-3">Credentials</p>
+          <h2 className="section-heading">Certifications</h2>
+          <div className="section-rule" />
+          <p className="mt-6 max-w-xl text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Credentials that back up the skills above — earned through
+            focused study and verified by the issuing organizations.
+          </p>
         </div>
+
+        <Suspense fallback={<CertificationSkeleton />}>
+          <CertificationContainer />
+        </Suspense>
       </div>
     </section>
   );
