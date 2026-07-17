@@ -2,38 +2,42 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { menuItems } from "@/constants";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import ThemeToggleSubmenu from "./ThemeToggleSubmenu";
 
 export default function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
-  const handleMenuClick = () => {
+  const isActiveLink = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
+
+  const handleLinkClick = () => {
     setIsOpen(false);
   };
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
         <Button
           variant="outline"
           size="icon"
           className="relative md:hidden border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
-          aria-controls="mobile-menu"
         >
           <div className="relative w-6 h-6">
             <HamburgerMenuIcon
@@ -48,69 +52,96 @@ export default function HamburgerMenu() {
             />
           </div>
         </Button>
-      </DropdownMenuTrigger>
+      </SheetTrigger>
 
-      <DropdownMenuContent
-        id="mobile-menu"
-        className="w-64 mt-2 mr-4 shadow-xl border border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-xl overflow-hidden"
-        align="end"
-        sideOffset={8}
+      <SheetContent
+        side="right"
+        className="w-full sm:max-w-sm flex flex-col gap-0 p-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-slate-200 dark:border-slate-700"
       >
         {/* Header */}
-        <div className="px-4 py-3 bg-emerald-50 dark:bg-emerald-900/20">
-          <DropdownMenuLabel className="text-base font-semibold text-slate-900 dark:text-slate-100">
+        <div className="px-6 py-5 bg-emerald-50 dark:bg-emerald-900/20 border-b border-slate-200 dark:border-slate-700">
+          <SheetTitle className="text-base font-semibold text-slate-900 dark:text-slate-100">
             Navigation
-          </DropdownMenuLabel>
+          </SheetTitle>
           <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
             Explore my portfolio
           </p>
         </div>
 
-        <DropdownMenuSeparator className="bg-slate-200 dark:bg-slate-700" />
-
-        {/* Theme Toggle */}
-        <div className="px-2 py-1">
-          <ThemeToggleSubmenu />
-        </div>
-
-        <DropdownMenuSeparator className="bg-slate-200 dark:bg-slate-700" />
-
         {/* Navigation Items */}
-        <div className="py-2 space-y-1">
-          {menuItems.map((item, index) => {
+        <nav
+          className="flex-1 overflow-y-auto py-3 px-3 space-y-1"
+          aria-label="Mobile navigation"
+        >
+          {menuItems.map((item) => {
+            const isActive = isActiveLink(item.href);
             const IconComponent = item.icon;
+
             return (
-              <DropdownMenuItem
+              <Link
                 key={item.href}
-                asChild
-                className="mx-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 focus:bg-slate-100 dark:focus:bg-slate-800 transition-all duration-200"
+                href={item.href}
+                onClick={handleLinkClick}
+                aria-current={isActive ? "page" : undefined}
+                className={`flex items-center gap-3 px-3 py-3 rounded-lg text-base font-medium transition-colors duration-200 group ${
+                  isActive
+                    ? "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20"
+                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400"
+                }`}
               >
-                <Link
-                  href={item.href}
-                  className="flex items-center px-3 py-3 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 group"
-                  onClick={handleMenuClick}
-                  role="menuitem"
-                  tabIndex={0}
+                <div
+                  className={`flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-200 ${
+                    isActive
+                      ? "bg-emerald-100 dark:bg-emerald-900/30"
+                      : "bg-slate-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30"
+                  }`}
                 >
-                  <div className="flex items-center justify-center w-8 h-8 rounded-md bg-slate-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 transition-colors duration-200 mr-3">
-                    <IconComponent className="h-4 w-4 text-slate-600 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200" />
-                  </div>
-                  <span className="flex-1">{item.label}</span>
-                  <div className="w-1 h-1 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                </Link>
-              </DropdownMenuItem>
+                  <IconComponent className="h-4 w-4" aria-hidden="true" />
+                </div>
+                <span className="flex-1">{item.label}</span>
+                {isActive && (
+                  <div
+                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
             );
           })}
+        </nav>
+
+        {/* CTA */}
+        <div className="px-4 pb-4">
+          <Link
+            href="/contact"
+            onClick={handleLinkClick}
+            className="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+          >
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </svg>
+            Let&apos;s talk
+          </Link>
         </div>
 
         {/* Footer */}
-        <DropdownMenuSeparator className="bg-slate-200 dark:bg-slate-700" />
-        <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/50">
+        <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-700">
           <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
             Ranok Raihan Portfolio
           </p>
         </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </SheetContent>
+    </Sheet>
   );
 }

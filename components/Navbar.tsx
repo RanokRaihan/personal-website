@@ -120,8 +120,11 @@ const Navbar = () => {
             Let&apos;s talk
           </Link>
 
-          {/* Theme Toggle */}
-          <ModeToggle border={true} />
+          {/* Theme Toggle - Desktop */}
+          <ModeToggle border={true} className="hidden md:flex" />
+
+          {/* Theme Toggle - Mobile */}
+          <ModeToggle border={true} className="flex md:hidden" />
 
           {/* Mobile Menu */}
           <HamburgerMenu />
