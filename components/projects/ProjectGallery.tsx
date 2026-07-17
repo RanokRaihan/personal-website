@@ -20,20 +20,21 @@ const ProjectGallery = ({ images, title, featured }: ProjectGalleryProps) => {
   const index = Math.min(active, total - 1);
   const hasMultiple = total > 1;
 
-  const go = (next: number) => setActive(((next % total) + total) % total);
+  const goTo = (next: number) => setActive(((next % total) + total) % total);
+
+  const go = (delta: 1 | -1) => goTo(index + delta);
 
   return (
     <div className="flex flex-col gap-3">
       {/* Main stage */}
       <div className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 dark:border-slate-700/60 dark:bg-slate-800">
         <Image
-          key={images[index]}
           src={images[index]}
           alt={`${title} — screenshot ${index + 1}`}
           fill
           priority={index === 0}
           sizes="(max-width: 1024px) 100vw, 800px"
-          className="object-cover animate-fade-in"
+          className="object-cover"
         />
 
         {featured && (
@@ -49,7 +50,7 @@ const ProjectGallery = ({ images, title, featured }: ProjectGalleryProps) => {
             <button
               type="button"
               aria-label="Previous image"
-              onClick={() => go(index - 1)}
+              onClick={() => go(-1)}
               className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-slate-800 shadow-sm backdrop-blur transition hover:bg-white dark:bg-slate-900/80 dark:text-slate-100 dark:hover:bg-slate-900 md:opacity-0 md:group-hover:opacity-100"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -57,7 +58,7 @@ const ProjectGallery = ({ images, title, featured }: ProjectGalleryProps) => {
             <button
               type="button"
               aria-label="Next image"
-              onClick={() => go(index + 1)}
+              onClick={() => go(1)}
               className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-slate-800 shadow-sm backdrop-blur transition hover:bg-white dark:bg-slate-900/80 dark:text-slate-100 dark:hover:bg-slate-900 md:opacity-0 md:group-hover:opacity-100"
             >
               <ChevronRight className="h-5 w-5" />
@@ -80,7 +81,7 @@ const ProjectGallery = ({ images, title, featured }: ProjectGalleryProps) => {
               type="button"
               aria-label={`View image ${i + 1}`}
               aria-current={i === index}
-              onClick={() => setActive(i)}
+              onClick={() => goTo(i)}
               className={cn(
                 "relative aspect-video h-16 shrink-0 overflow-hidden rounded-lg border-2 transition",
                 i === index
