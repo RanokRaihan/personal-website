@@ -6,32 +6,53 @@ import { Button } from "../ui/button";
 import ProjectContainer from "./ProjectContainer";
 
 const ProjectSkeleton = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {Array.from({ length: 3 }).map((_, i) => (
-      <div
-        key={i}
-        className="bg-white dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 rounded-xl overflow-hidden flex flex-col"
-      >
-        <Skeleton className="h-48 w-full rounded-none" />
-        <div className="p-5 flex flex-col gap-3 flex-1">
-          <Skeleton className="h-6 w-3/4" />
-          <Skeleton className="h-4 w-1/2" />
-          <Skeleton className="h-14 w-full" />
-          <div className="flex gap-1.5">
-            <Skeleton className="h-5 w-14 rounded-full" />
-            <Skeleton className="h-5 w-18 rounded-full" />
-            <Skeleton className="h-5 w-12 rounded-full" />
-          </div>
-          <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
-            <Skeleton className="h-4 w-20" />
+  <div className="flex flex-col gap-20 md:gap-28">
+    {Array.from({ length: 3 }).map((_, i) => {
+      const imageFirst = i % 2 === 0;
+      return (
+        <div
+          key={i}
+          className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-center"
+        >
+          <Skeleton
+            className={`aspect-[4/3] md:aspect-[16/11] w-full md:w-1/2 rounded-2xl ${
+              imageFirst ? "md:order-1" : "md:order-2"
+            }`}
+          />
+          <div
+            className={`w-full md:w-1/2 flex flex-col gap-3 ${
+              imageFirst ? "md:order-2" : "md:order-1"
+            }`}
+          >
             <div className="flex gap-2">
-              <Skeleton className="h-7 w-7 rounded-md" />
-              <Skeleton className="h-7 w-7 rounded-md" />
+              <Skeleton className="h-5 w-20 rounded-full" />
+              <Skeleton className="h-5 w-20 rounded-full" />
+            </div>
+            <Skeleton className="h-8 w-3/4" />
+            <Skeleton className="h-5 w-1/2" />
+            <div className="flex flex-col gap-2 mt-1">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+            <div className="flex flex-col gap-2 mt-2">
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {Array.from({ length: 5 }).map((_, j) => (
+                <Skeleton key={j} className="h-6 w-16 rounded-full" />
+              ))}
+            </div>
+            <div className="flex gap-3 mt-2">
+              <Skeleton className="h-10 w-32 rounded-md" />
+              <Skeleton className="h-10 w-32 rounded-md" />
             </div>
           </div>
         </div>
-      </div>
-    ))}
+      );
+    })}
   </div>
 );
 
