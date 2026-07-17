@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { IProject } from "@/types/projectType";
-import { CheckCircle2, ExternalLink, Github, Globe } from "lucide-react";
+import { ArrowRightIcon, ExternalLink, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { CATEGORY_LABELS, COMPLEXITY_COLORS } from "./ProjectCard";
@@ -22,25 +22,21 @@ const FeaturedProjectShowcase = ({ project, index }: FeaturedProjectShowcaseProp
     category,
     complexity,
     techStack,
-    highlights,
     frontendLiveUrl,
     backendLiveUrl,
-    frontendRepoUrl,
-    backendRepoUrl,
   } = project;
 
   const imageFirst = index % 2 === 0;
 
   const allTechs = Object.values(techStack).flat();
-  const displayTechs = allTechs.slice(0, 8);
+  const displayTechs = allTechs.slice(0, 3);
   const overflowCount = allTechs.length - displayTechs.length;
 
   const liveUrl = frontendLiveUrl || backendLiveUrl;
-  const repoUrl = frontendRepoUrl || backendRepoUrl;
 
   return (
     <ScrollReveal direction={imageFirst ? "left" : "right"}>
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-center">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-start">
         {/* Image panel — always first in DOM so mobile always stacks image above details */}
         <div
           className={`w-full md:w-1/2 ${imageFirst ? "md:order-1" : "md:order-2"}`}
@@ -95,19 +91,6 @@ const FeaturedProjectShowcase = ({ project, index }: FeaturedProjectShowcaseProp
             {summary}
           </p>
 
-          {highlights.length > 0 && (
-            <ul className="mt-5 space-y-2">
-              {highlights.slice(0, 3).map((highlight) => (
-                <li key={highlight} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0 text-emerald-500 dark:text-emerald-400" />
-                  <span className="text-sm text-slate-600 dark:text-slate-400">
-                    {highlight}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-
           {displayTechs.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-5">
               {displayTechs.map((tech) => (
@@ -132,23 +115,18 @@ const FeaturedProjectShowcase = ({ project, index }: FeaturedProjectShowcaseProp
 
           <div className="flex flex-wrap items-center gap-3 mt-7">
             {liveUrl && (
-              <Button asChild variant="primary">
+              <Button asChild variant="primary" className="rounded-full">
                 <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                  Live Demo
+                  Live Link
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </a>
               </Button>
             )}
-            {repoUrl && (
-              <Button asChild variant="outline">
-                <a href={repoUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4 mr-2" />
-                  GitHub
-                </a>
-              </Button>
-            )}
-            <Button asChild variant="outline">
-              <Link href={`/projects/${slug}`}>View Case Study</Link>
+            <Button asChild variant="outline" className="rounded-full">
+              <Link href={`/projects/${slug}`}>
+                Explore More
+                <ArrowRightIcon className="w-4 h-4 ml-2" />
+              </Link>
             </Button>
           </div>
         </div>
