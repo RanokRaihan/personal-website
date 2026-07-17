@@ -39,7 +39,7 @@ const FeaturedProjectShowcase = ({ project, index }: FeaturedProjectShowcaseProp
   const repoUrl = frontendRepoUrl || backendRepoUrl;
 
   return (
-    <ScrollReveal>
+    <ScrollReveal direction={imageFirst ? "left" : "right"}>
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-center">
         {/* Image panel — always first in DOM so mobile always stacks image above details */}
         <div
