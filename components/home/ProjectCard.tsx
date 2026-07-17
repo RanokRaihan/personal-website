@@ -10,7 +10,7 @@ interface ProjectCardProps {
   index?: number;
 }
 
-const CATEGORY_LABELS: Record<IProject["category"], string> = {
+export const CATEGORY_LABELS: Record<IProject["category"], string> = {
   FULL_STACK: "Full Stack",
   FRONTEND: "Frontend",
   BACKEND: "Backend",
@@ -22,7 +22,7 @@ const CATEGORY_LABELS: Record<IProject["category"], string> = {
   OTHER: "Other",
 };
 
-const COMPLEXITY_COLORS: Record<IProject["complexity"], string> = {
+export const COMPLEXITY_COLORS: Record<IProject["complexity"], string> = {
   BEGINNER:
     "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
   INTERMEDIATE:

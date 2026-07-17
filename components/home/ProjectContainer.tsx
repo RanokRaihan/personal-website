@@ -1,5 +1,5 @@
 import { getFeaturedProjectsAction } from "@/actions/projectAction";
-import ProjectCard from "./ProjectCard";
+import FeaturedProjectShowcase from "./FeaturedProjectShowcase";
 
 const ProjectContainer = async () => {
   const result = await getFeaturedProjectsAction();
@@ -20,10 +20,12 @@ const ProjectContainer = async () => {
     );
   }
 
+  const featured = result.slice(0, 3);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {result.map((project, index) => (
-        <ProjectCard key={project._id} project={project} index={index} />
+    <div className="flex flex-col gap-20 md:gap-28">
+      {featured.map((project, index) => (
+        <FeaturedProjectShowcase key={project._id} project={project} index={index} />
       ))}
     </div>
   );
