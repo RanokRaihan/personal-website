@@ -78,13 +78,10 @@ const AboutSidebar = ({ settings }: { settings: ISetting }) => {
       </div>
 
       {/* Resume */}
-      <Button
-        asChild
-        className="w-full gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
-      >
+      <Button asChild variant="green" className="w-full gap-2">
         <Link href={resumeUrl} target="_blank" rel="noopener noreferrer">
           <Download className="h-4 w-4" />
-          Download Résumé (PDF)
+          Download Resume (PDF)
         </Link>
       </Button>
 
@@ -94,7 +91,7 @@ const AboutSidebar = ({ settings }: { settings: ISetting }) => {
           <Button
             size="icon"
             variant="ghost"
-            className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+            className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             asChild
           >
             <Link
@@ -111,7 +108,7 @@ const AboutSidebar = ({ settings }: { settings: ISetting }) => {
           <Button
             size="icon"
             variant="ghost"
-            className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+            className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             asChild
           >
             <Link
@@ -127,7 +124,7 @@ const AboutSidebar = ({ settings }: { settings: ISetting }) => {
         <Button
           size="icon"
           variant="ghost"
-          className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+          className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
           asChild
         >
           <Link href="/contact" aria-label="Get in touch">

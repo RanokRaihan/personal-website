@@ -63,12 +63,12 @@ const HeroSection = async () => {
               <Button
                 size="lg"
                 variant="green"
-                className="rounded-full px-7 font-semibold"
+                className="px-7 font-semibold"
                 asChild
               >
                 <Link href={s.resumeUrl}>
                   <DownloadIcon className="mr-2 h-4 w-4" />
-                  Download résumé
+                  Download Resume
                 </Link>
               </Button>
             )}
@@ -78,7 +78,7 @@ const HeroSection = async () => {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+                  className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
                   asChild
                 >
                   <Link
@@ -95,7 +95,7 @@ const HeroSection = async () => {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+                  className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
                   asChild
                 >
                   <Link
@@ -112,7 +112,7 @@ const HeroSection = async () => {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+                  className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
                   asChild
                 >
                   <Link href={`mailto:${email}`} aria-label="Send email">

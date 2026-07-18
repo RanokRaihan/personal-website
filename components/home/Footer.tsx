@@ -45,7 +45,7 @@ const Footer = async () => {
               <span className="text-emerald-500">.</span>
             </h3>
             <p className="mt-3 text-sm leading-relaxed">
-              {s.footerText}
+              Building the future, one line of code at a time.
             </p>
             <div className="mt-5 flex gap-3">
               {socials.map(({ href, label, Icon }) => (
@@ -88,7 +88,9 @@ const Footer = async () => {
         {/* Copyright */}
         <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm">
-            © {new Date().getFullYear()} {s.name}. All rights reserved.
+            {s.footerText
+              ? s.footerText
+              : `© ${new Date().getFullYear()} ${s.name}. All rights reserved.`}
           </p>
           <ul className="flex gap-6">
             {legalLinks.map(({ href, label }) => (

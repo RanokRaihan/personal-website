@@ -14,10 +14,7 @@ export default function ProjectNotFound() {
           The project you&apos;re looking for doesn&apos;t exist, was
           unpublished, or the link is out of date.
         </p>
-        <Button
-          asChild
-          className="mt-8 bg-blue-600 text-white hover:bg-blue-700"
-        >
+        <Button asChild variant="primary" className="mt-8">
           <Link href="/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Browse all projects

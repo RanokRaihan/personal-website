@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HamburgerMenu from "./HamburgerMenu";
 import { ModeToggle } from "./ThemeToggleButton";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -98,30 +99,31 @@ const Navbar = () => {
         {/* Right side controls */}
         <div className="flex items-center gap-3">
           {/* CTA Button - Desktop only */}
-          <Link
-            href="/contact"
-            className="hidden lg:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
-            aria-label="Get in touch - Contact me"
-          >
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
-            Let&apos;s talk
-          </Link>
+          <Button asChild variant="green" className="hidden gap-2 lg:inline-flex">
+            <Link href="/contact" aria-label="Get in touch - Contact me">
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+              Let&apos;s talk
+            </Link>
+          </Button>
 
-          {/* Theme Toggle */}
-          <ModeToggle border={true} />
+          {/* Theme Toggle - Desktop */}
+          <ModeToggle border={true} className="hidden md:flex" />
+
+          {/* Theme Toggle - Mobile */}
+          <ModeToggle border={true} className="flex md:hidden" />
 
           {/* Mobile Menu */}
           <HamburgerMenu />

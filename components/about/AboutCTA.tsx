@@ -16,11 +16,7 @@ const AboutCTA = () => {
       </p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Button
-          asChild
-          size="lg"
-          className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
-        >
+        <Button asChild size="lg" variant="green" className="gap-2">
           <Link href="/projects">
             View my work
             <ArrowRight className="h-4 w-4" />

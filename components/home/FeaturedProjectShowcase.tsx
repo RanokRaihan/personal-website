@@ -115,14 +115,14 @@ const FeaturedProjectShowcase = ({ project, index }: FeaturedProjectShowcaseProp
 
           <div className="flex flex-wrap items-center gap-3 mt-7">
             {liveUrl && (
-              <Button asChild variant="primary" className="rounded-full">
+              <Button asChild variant="primary">
                 <a href={liveUrl} target="_blank" rel="noopener noreferrer">
                   Live Link
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </a>
               </Button>
             )}
-            <Button asChild variant="outline" className="rounded-full">
+            <Button asChild variant="outline">
               <Link href={`/projects/${slug}`}>
                 Explore More
                 <ArrowRightIcon className="w-4 h-4 ml-2" />
