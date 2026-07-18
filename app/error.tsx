@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 
+import { Button } from "@/components/ui/button";
+
 export default function Error({
   error,
   reset,
@@ -22,12 +24,9 @@ export default function Error({
           ? error.message
           : "An error occurred."}
       </p>
-      <button
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-        onClick={reset}
-      >
+      <Button variant="primary" onClick={reset}>
         Try again
-      </button>
+      </Button>
     </div>
   );
 }

@@ -71,7 +71,7 @@ const ContactGraphic = () => {
           <Button
             size="icon"
             variant="ghost"
-            className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+            className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             asChild
           >
             <Link
@@ -86,7 +86,7 @@ const ContactGraphic = () => {
           <Button
             size="icon"
             variant="ghost"
-            className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+            className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             asChild
           >
             <Link
@@ -101,7 +101,7 @@ const ContactGraphic = () => {
           <Button
             size="icon"
             variant="ghost"
-            className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+            className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             asChild
           >
             <Link href="mailto:ranokraihan@gmail.com" aria-label="Send email">

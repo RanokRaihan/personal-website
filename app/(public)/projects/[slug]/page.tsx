@@ -249,10 +249,7 @@ export default async function ProjectDetailPage({
             {(primaryLive || primaryRepo) && (
               <div className="mt-6 flex flex-wrap gap-3">
                 {primaryLive && (
-                  <Button
-                    asChild
-                    className="bg-blue-600 text-white hover:bg-blue-700"
-                  >
+                  <Button asChild variant="primary">
                     <a
                       href={primaryLive}
                       target="_blank"

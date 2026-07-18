@@ -19,10 +19,7 @@ const WriteTestimonialDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="green"
-          className="rounded-full px-6 font-semibold"
-        >
+        <Button variant="green" className="px-6 font-semibold">
           <PenLineIcon className="mr-2 h-4 w-4" />
           Write a testimonial
         </Button>

@@ -61,13 +61,10 @@ const ConnectCard = () => {
         </div>
 
         {/* Resume download */}
-        <Button
-          asChild
-          className="mt-4 w-full gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
-        >
+        <Button asChild variant="green" className="mt-4 w-full gap-2">
           <Link href={RESUME_URL} target="_blank" rel="noopener noreferrer">
             <Download className="h-4 w-4" />
-            Download Résumé (PDF)
+            Download Resume (PDF)
           </Link>
         </Button>
 
@@ -77,7 +74,7 @@ const ConnectCard = () => {
             <Button
               size="icon"
               variant="ghost"
-              className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+              className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
               asChild
             >
               <Link
@@ -94,7 +91,7 @@ const ConnectCard = () => {
             <Button
               size="icon"
               variant="ghost"
-              className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+              className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
               asChild
             >
               <Link
@@ -111,7 +108,7 @@ const ConnectCard = () => {
             <Button
               size="icon"
               variant="ghost"
-              className="rounded-full text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+              className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
               asChild
             >
               <Link href={`mailto:${socials.email}`} aria-label="Send email">
