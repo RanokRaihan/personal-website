@@ -105,8 +105,9 @@ const QueryBuilderClient = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label>Experience level</Label>
+            <Label id="experience-level-label">Experience level</Label>
             <MultiSelectPills
+              labelId="experience-level-label"
               options={EXPERIENCE_LEVEL_OPTIONS}
               selected={form.experienceLevels}
               onChange={(values) => updateForm("experienceLevels", values)}
@@ -114,8 +115,9 @@ const QueryBuilderClient = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label>Work type</Label>
+            <Label id="work-type-label">Work type</Label>
             <MultiSelectPills
+              labelId="work-type-label"
               options={WORK_TYPE_OPTIONS}
               selected={form.workTypes}
               onChange={(values) => updateForm("workTypes", values)}
@@ -123,8 +125,9 @@ const QueryBuilderClient = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label>Job type</Label>
+            <Label id="job-type-label">Job type</Label>
             <MultiSelectPills
+              labelId="job-type-label"
               options={JOB_TYPE_OPTIONS}
               selected={form.jobTypes}
               onChange={(values) => updateForm("jobTypes", values)}

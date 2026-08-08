@@ -7,15 +7,16 @@ interface MultiSelectPillsProps {
   options: QueryBuilderOption[];
   selected: string[];
   onChange: (values: string[]) => void;
+  labelId?: string;
 }
 
-const MultiSelectPills = ({ options, selected, onChange }: MultiSelectPillsProps) => {
+const MultiSelectPills = ({ options, selected, onChange, labelId }: MultiSelectPillsProps) => {
   const toggle = (value: string) => {
     onChange(selected.includes(value) ? selected.filter((v) => v !== value) : [...selected, value]);
   };
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" role="group" aria-labelledby={labelId}>
       {options.map((option) => {
         const active = selected.includes(option.value);
         return (

@@ -23,9 +23,9 @@ export default function QueryBuilderPage() {
             Back to tools
           </Link>
           <span className="section-eyebrow">{"// tools / query-builder"}</span>
-          <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+          <h1 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
             LinkedIn Job Search Query Builder
-          </h2>
+          </h1>
           <div className="section-rule mt-0.5 mb-0.5" />
           <p className="max-w-xl text-sm text-slate-600 dark:text-slate-300">
             Fill out the filters below to generate a LinkedIn job search URL. Everything runs locally in
