@@ -1,0 +1,21 @@
+{
+  "MANDATORY": "no border around, no mockup, actual printable design ",
+  "dimension": "4x6 in",
+  "colorMode": "CMYK",
+  "style": "stickers",
+  "instruction": "total 6 round sticker, each sticker is circle, exact 1.8 inch diameter, with a glossy finish. place them in 2 x3 grid on the page.  The design should be vibrant and eye-catching, featuring a playful and whimsical theme. Please ensure that the colors are bright and the details are clear, as these stickers will be used for decoration and promotional purposes. chose background color and text color that complement each other and enhance the overall visual appeal of the stickers. The text should be legible and easy to read, with a fun and engaging font style. Please avoid using any copyrighted material or logos in the design. The final output should be in high resolution, suitable for printing on sticker paper. ",
+  "stickerDetails": [
+    {
+      "text": "LARGE BAG",
+      "Quantity": 2
+    },
+    {
+      "text": "MEDIUM BAG",
+      "Quantity": 2
+    },
+    {
+      "text": "SMALL BAG",
+      "Quantity": 2
+    }
+  ]
+}
