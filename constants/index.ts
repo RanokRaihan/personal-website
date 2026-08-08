@@ -7,6 +7,7 @@ import {
   Mail,
   Server,
   User,
+  Wrench,
 } from "lucide-react";
 import type { IProject, ISetting } from "@/types";
 
@@ -71,6 +72,7 @@ export const menuItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/projects", label: "Projects", icon: FolderOpen },
   { href: "/blog", label: "Blogs", icon: BookOpen },
+  { href: "/tools", label: "Tools", icon: Wrench },
   { href: "/about", label: "About", icon: User },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
